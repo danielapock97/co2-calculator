@@ -1,6 +1,7 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Input, ViewChild} from '@angular/core';
 import {BreakpointObserver} from "@angular/cdk/layout";
 import {MatSidenav} from "@angular/material/sidenav";
+import {User} from "../../entities/user";
 
 @Component({
   selector: 'app-sidenav',
@@ -10,6 +11,8 @@ import {MatSidenav} from "@angular/material/sidenav";
 export class SidenavComponent implements AfterViewInit{
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
+
+  @Input() user: User | undefined;
 
   constructor(private breakpointObserver: BreakpointObserver) {
   }

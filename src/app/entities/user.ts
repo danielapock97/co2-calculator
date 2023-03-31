@@ -1,6 +1,6 @@
 export interface User {
   id: number,
-  username: string,
+  name: string,
   role: string,
   loggedIn: boolean,
   lastLoggedIn: Date

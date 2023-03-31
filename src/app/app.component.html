@@ -1,7 +1,12 @@
 <div class="wrapper">
   <div class="main-panel">
-    <div class="sidebar" data-color="white" data-active-color="danger">
-      <app-sidenav></app-sidenav>
+    <ng-template *ngIf="currentUser?.loggedIn">
+      <div>
+        <app-sidenav [user]="currentUser"></app-sidenav>
+      </div>
+    </ng-template>
+    <div>
+      <app-login></app-login>
     </div>
     <router-outlet></router-outlet>
   </div>
