@@ -23,21 +23,16 @@
     </button>
     Responsive side navigation
   </mat-toolbar>
-  <mat-sidenav  #sidenav="matSidenav">
+  <mat-sidenav #sidenav="matSidenav">
 
-    <img class="avatar mat-elevation-z8" src="https://source.unsplash.com/c_GmwfHBDzk/200x200" />
+    <img class="avatar mat-elevation-z8" src="https://source.unsplash.com/c_GmwfHBDzk/200x200"/>
     <h4 class="name">John Smith</h4>
 
     <mat-divider></mat-divider>
 
-    <button mat-button class="menu-button">
+    <button mat-button class="menu-button" routerLinkActive="active" routerLink="/new-calculation">
       <mat-icon>home</mat-icon>
       <span>Home</span>
-    </button>
-
-    <button mat-button class="menu-button">
-      <mat-icon>person</mat-icon>
-      <span>Profile</span>
     </button>
 
     <button mat-button class="menu-button">
@@ -56,7 +51,7 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <div class="content mat-elevation-z8">
-      Main content here
+      <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

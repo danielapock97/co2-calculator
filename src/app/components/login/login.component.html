@@ -1,18 +1,22 @@
-<mat-card class="mat-card">
-  <mat-card-header>
+<div class="mat-card">
+<mat-card class="content">
+  <mat-card-header class="mat-card-title mat-header-cell">
     <mat-card-title>Carbon Footprint Calculator</mat-card-title>
   </mat-card-header>
   <mat-card-content>
 
-    <form [formGroup]="loginForm">
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
       <mat-form-field>
         <mat-label>Username</mat-label>
-        <mat-select formControlName="name" class="mat-mdc-form-field-input-control">
-          <mat-option >--No user selected--</mat-option>
-          <mat-option  *ngFor="let user of availableUsers" [value]="user.id">{{user.name}}
+        <mat-select formControlName="id" class="mat-mdc-form-field-input-control">
+          <mat-option>--No user selected--</mat-option>
+          <mat-option *ngFor="let user of availableUsers" [value]="user">{{user.name}}
           </mat-option>
         </mat-select>
       </mat-form-field>
+      <br/>
+      <button mat-button type="submit">Login</button>
     </form>
   </mat-card-content>
 </mat-card>
+</div>

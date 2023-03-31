@@ -1,14 +1,11 @@
 <div class="wrapper">
   <div class="main-panel">
-    <ng-template *ngIf="currentUser?.loggedIn">
-      <div>
-        <app-sidenav [user]="currentUser"></app-sidenav>
-      </div>
-    </ng-template>
-    <div>
-      <app-login></app-login>
+    <div *ngIf="!currentUser?.loggedIn">
+      <app-login (onLoginEvent)="onLogin($event)"></app-login>
     </div>
-    <router-outlet></router-outlet>
+    <div *ngIf="currentUser?.loggedIn">
+      <app-overview [user]="currentUser"></app-overview>
+    </div>
   </div>
   <footer></footer>
 </div>

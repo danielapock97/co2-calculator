@@ -7,15 +7,12 @@ import {UserService} from "./services/user.service";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'co2-calculator';
-  currentUser: User | undefined;
+  currentUser!: User;
 
-  constructor() {
-  }
-
-  ngOnInit() {
-
+  onLogin(user: User) {
+    this.currentUser = user;
   }
 
 }

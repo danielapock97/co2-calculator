@@ -2,17 +2,17 @@
   "users": [
     {
       "id": 0,
-      "username": "Employee",
-      "role": "Admin",
-      "loggedIn": false,
-      "lastLoggedIn": "31.03.2023"
+      "name": "Employee",
+      "role": "Employee",
+      "loggedIn": true,
+      "lastLoggedIn": "2023-03-31T12:52:01.623Z"
     },
     {
       "id": 1,
-      "username": "Admin",
+      "name": "Admin",
       "role": "Admin",
-      "loggedIn": false,
-      "lastLoggedIn": "31.03.2023"
+      "loggedIn": true,
+      "lastLoggedIn": "2023-03-31T12:52:05.517Z"
     }
   ],
   "transport": [

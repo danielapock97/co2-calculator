@@ -1,3 +1,21 @@
 mat-card {
   background-color: #48A852;
+  display: flex;
+
+}
+
+.content {
+  height: calc(30vh - 98px);
+  width: calc(50vh - 98px);
+  border-radius: 10px;
+  margin: 16px;
+  margin-left: 32px;
+
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  background-color: #48A852;
+
+  font-size: 1rem;
+  color: black;
 }

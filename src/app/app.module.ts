@@ -9,12 +9,16 @@ import {SidenavComponent} from './components/sidenav/sidenav.component';
 import {LoginComponent} from './components/login/login.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import { OverviewComponent } from './components/overview/overview.component';
+import { TransportUserInputComponent } from './components/transport-user-input/transport-user-input.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidenavComponent,
-    LoginComponent
+    LoginComponent,
+    OverviewComponent,
+    TransportUserInputComponent
   ],
   imports: [
     BrowserModule,
