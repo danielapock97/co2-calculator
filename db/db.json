@@ -1,0 +1,44 @@
+{
+  "users": [
+    {
+      "id": 0,
+      "username": "Employee",
+      "role": "Admin",
+      "loggedIn": false,
+      "lastLoggedIn": "31.03.2023"
+    },
+    {
+      "id": 1,
+      "username": "Admin",
+      "role": "Admin",
+      "loggedIn": false,
+      "lastLoggedIn": "31.03.2023"
+    }
+  ],
+  "transport": [
+    {
+      "id": 0,
+      "uuid": "bb60e4f1-57d7-47e4-941b-9e0b03711925",
+      "transportName": "Electric Passenger Train",
+      "emissionFactor": 0.0235,
+      "unitForCalculation": "Passenger Over Distance",
+      "activityID": "passenger_train-route_type_na-fuel_source_electricity",
+      "LCA_Activity": "upstream-use_phase",
+      "year": 2021,
+      "source": "BEIS",
+      "category": "Vehicles",
+      "region": "Austria"
+    }
+  ],
+  "roles": [
+    {
+      "id": 0,
+      "roleName": "Admin"
+    },
+    {
+      "id": 1,
+      "roleName": "Employee"
+    }
+  ],
+  "user_transport": []
+}
