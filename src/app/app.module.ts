@@ -11,6 +11,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { OverviewComponent } from './components/overview/overview.component';
 import { TransportUserInputComponent } from './components/transport-user-input/transport-user-input.component';
+import { StatisticsComponent } from './components/statistics/statistics.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { TransportUserInputComponent } from './components/transport-user-input/t
     SidenavComponent,
     LoginComponent,
     OverviewComponent,
-    TransportUserInputComponent
+    TransportUserInputComponent,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,
