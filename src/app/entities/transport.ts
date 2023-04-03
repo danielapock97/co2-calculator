@@ -3,4 +3,10 @@ export interface Transport {
   uuid: string,
   transportName: string,
   activityId: string
+  emissionFactor: number,
+  unitForCalculation: string,
+  unitOfEmission: string,
+  LCA_Activity: string,
+  year: number,
+  region: string,
 }
