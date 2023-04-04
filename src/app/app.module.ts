@@ -12,6 +12,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { OverviewComponent } from './components/overview/overview.component';
 import { TransportUserInputComponent } from './components/transport-user-input/transport-user-input.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
+import {MAT_DATE_LOCALE} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,9 @@ import { StatisticsComponent } from './components/statistics/statistics.componen
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'de-AT'}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

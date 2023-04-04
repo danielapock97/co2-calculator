@@ -1,7 +1,16 @@
 <form [formGroup]="inputForm" (ngSubmit)="onSave()">
+  <mat-form-field appearance="fill">
+    <mat-label>Date</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="date" required>
+    <mat-hint>DD.MM.YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <br/>
   <mat-form-field>
-    <mat-label>Mode of Transport</mat-label>
-    <mat-select formControlName="mode_of_transport" class="mat-mdc-form-field-input-control">
+  <mat-label>Mode of Transport</mat-label>
+    <mat-select formControlName="transportID" class="mat-mdc-form-field-input-control" required>
       <mat-option>--No mode of transport selected--</mat-option>
       <mat-option *ngFor="let transport of modesOfTransport" [value]="transport.id">{{transport.name}}</mat-option>
     </mat-select>
@@ -9,10 +18,10 @@
   <br/>
   <mat-form-field>
     <mat-label>Distance</mat-label>
-    <input matInput placeholder="Ex. 10, 7.5" formControlName="distance" class="mat-mdc-form-field-input-control">
-    <span matSuffix> km</span>
+    <input matInput placeholder="Example 7.5" formControlName="distance_km" class="mat-mdc-form-field-input-control" required>
+    <span matSuffix>km</span>
   </mat-form-field>
   <br/>
-  <button mat-button type="submit">Save</button>
+  <button mat-button type="submit" [disabled]="!inputForm.valid">Save</button>
   <button mat-button type="reset">Reset</button>
 </form>

@@ -1,12 +1,14 @@
 export interface Transport {
-  id: number,
-  uuid: string,
-  name: string,
-  activityId: string
-  emissionFactor: number,
-  unitForCalculation: string,
-  unitOfEmission: string,
-  LCA_Activity: string,
-  year: number,
-  region: string,
+  "name": string,
+  "activity_id": string,
+  "uuid": string,
+  "id": string,
+  "access_type": "string",
+  "source": string,
+  "source_dataset": string,
+  "year": string,
+  "region": string,
+  "category": string,
+  "lca_activity": string,
+  "data_quality_flags": []
 }

@@ -5,6 +5,10 @@ import {TransportService} from "../../services/transport.service";
 import {User} from "../../entities/user";
 import {TransportUserService} from "../../services/transport-user.service";
 import {TransportUser} from "../../entities/transport-user";
+import {MAT_DATE_LOCALE} from "@angular/material/core";
+import {CalculationService} from "../../services/calculation.service";
+import {Estimate} from "../../entities/estimate";
+import {Emissions} from "../../entities/emissions";
 
 @Component({
   selector: 'app-transport-user-input',
@@ -17,19 +21,22 @@ export class TransportUserInputComponent implements OnInit{
   inputForm = this.fb.group(
     {
       id: [0],
-      mode_of_transport: [""],
-      distance: [],
+      date: [""],
+      transportID: [""],
+      distance_km: [""],
     },
     {
       updateOn: "change"
     })
 
   modesOfTransport!: Transport[];
+  emissions!: Emissions
 
   constructor(
     private fb: FormBuilder,
     private transportService: TransportService,
-    private transportUserService: TransportUserService
+    private transportUserService: TransportUserService,
+    private calculationService: CalculationService
   ) {}
 
   ngOnInit() {
@@ -43,15 +50,26 @@ export class TransportUserInputComponent implements OnInit{
   }
 
   onSave() {
-    let toPost = this.inputForm.value as TransportUser;
-    toPost.userID = 0;
-    toPost.transportID = 0;
-    toPost.date = new Date();
-    toPost.distance_km = 12;
-    toPost.calculatedEmissions = 22;
+    let data = this.inputForm.value as unknown as TransportUser;
+    data.calculatedEmissions = 0;
 
-    this.transportUserService.post(toPost).subscribe(res => {
+    let transport =
+      this.modesOfTransport.find(element => element.id === data.transportID)
 
-    })
+    if (transport !== undefined) {
+      this.calculateEmissions(transport, data.distance_km)
+    }
+
+    // this.transportUserService.post(toPost).subscribe(res => {
+    // })
+  }
+
+  calculateEmissions(transport: Transport, distance: number): void {
+    this.calculationService.post(transport, distance).subscribe(
+      res => {
+        this.emissions = res
+        console.log(res)
+      }
+    )
   }
 }
