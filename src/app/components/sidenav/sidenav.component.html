@@ -29,35 +29,34 @@
 
     <mat-divider></mat-divider>
 
-    <button mat-button routerLinkActive="active" routerLink="/overview">
+    <button mat-button class="menu-button" routerLinkActive="active" routerLink="/overview">
       <mat-icon>home</mat-icon>
       <span>Overview</span>
     </button>
 
-    <button mat-button routerLinkActive="active" routerLink="/new-calculation">
+    <button mat-button class="menu-button" routerLinkActive="active" routerLink="/new-calculation">
       <mat-icon>playlist_add</mat-icon>
       <span>New Data</span>
     </button>
 
-    <button mat-button routerLinkActive="active" routerLink="/my-statistics">
+    <button mat-button class="menu-button" routerLinkActive="active" routerLink="/my-statistics">
       <mat-icon>insert_chart_outlined</mat-icon>
       <span>My Statistics</span>
     </button>
 
     <div *ngIf="user?.role == 'Admin'">
-      <button mat-button routerLinkActive="active" routerLink="/statistics-all">
+      <button mat-button class="menu-button" routerLinkActive="active" routerLink="/statistics-all">
         <mat-icon>show_chart</mat-icon>
         <span>Statistics</span>
       </button>
     </div>
 
-    <button mat-button class="menu-button">
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" routerLinkActive="active" routerLink="/about">
       <mat-icon>info</mat-icon>
       <span>About</span>
     </button>
-
-    <mat-divider></mat-divider>
-
 
   </mat-sidenav>
   <mat-sidenav-content>

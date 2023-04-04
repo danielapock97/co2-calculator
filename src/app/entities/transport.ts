@@ -1,7 +1,7 @@
 export interface Transport {
   id: number,
   uuid: string,
-  transportName: string,
+  name: string,
   activityId: string
   emissionFactor: number,
   unitForCalculation: string,

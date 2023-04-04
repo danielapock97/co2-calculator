@@ -19,7 +19,7 @@
     {
       "id": 0,
       "uuid": "bb60e4f1-57d7-47e4-941b-9e0b03711925",
-      "transportName": "Electric Passenger Train",
+      "name": "Electric Passenger Train",
       "emissionFactor": 0.0235,
       "unitForCalculation": "Passenger Over Distance",
       "activityID": "passenger_train-route_type_na-fuel_source_electricity",
@@ -39,5 +39,16 @@
       "roleName": "Employee"
     }
   ],
-  "user_transport": []
+  "user_transport": [
+    {
+      "id": 1,
+      "mode_of_transport": "",
+      "distance": null,
+      "userID": 0,
+      "transportID": 0,
+      "date": "2023-04-03T13:42:24.597Z",
+      "distance_km": 12,
+      "calculatedEmissions": 22
+    }
+  ]
 }

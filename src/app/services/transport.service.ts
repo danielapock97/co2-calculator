@@ -16,16 +16,11 @@ export class TransportService {
   };
   constructor(private httpClient: HttpClient) { }
 
-  getTransports(): Observable<Transport[]> {
+  get(): Observable<Transport[]> {
     return this.httpClient.get<Transport[]>(this.apiUrl)
   }
 
-  getTransportById(id: number): Observable<Transport> {
+  getById(id: number): Observable<Transport> {
     return this.httpClient.get<Transport>(this.apiUrl + "/" + id)
-  }
-
-  postTransport(Transport: Transport): Observable<Transport> {
-    const url = `${this.apiUrl}/${Transport.id}`;
-    return this.httpClient.put<Transport>(url, Transport, this.httpOptions);
   }
 }

@@ -22,6 +22,9 @@ const routes: Routes = [
     path: 'statistics-all', component: StatisticsComponent, title: "Statistics"
   },
   {
+    path: 'about', component: StatisticsComponent, title: "About"
+  },
+  {
     path: '**',
     redirectTo: ''
   }
