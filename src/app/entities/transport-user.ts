@@ -6,5 +6,6 @@ export interface TransportUser {
   transportID: string,
   date: Date,
   distance_km: number,
-  calculatedEmissions: Emissions
+  calculatedEmissions: Emissions,
+  createdAt: Date
 }

@@ -38,16 +38,13 @@ export class TransportUserInputComponent implements OnInit {
     private fb: FormBuilder,
     private transportService: TransportService,
     private transportUserService: TransportUserService,
-    private calculationService: CalculationService,
-    private userService: UserService,
-    private activeRoute: ActivatedRoute
+    private calculationService: CalculationService
   ) {
   }
 
   ngOnInit() {
     this.getModesOfTransport();
     this.getUser()
-
   }
 
   getModesOfTransport() {
@@ -70,6 +67,8 @@ export class TransportUserInputComponent implements OnInit {
     if (transport !== undefined) {
       this.calculateEmissions(transport, newData.distance_km, newData)
     }
+
+    this.inputForm.reset();
   }
 
   calculateEmissions(transport: Transport, distance: number, newData: TransportUser): void {
@@ -79,12 +78,17 @@ export class TransportUserInputComponent implements OnInit {
 
         newData.userID = this.user.id;
         newData.calculatedEmissions = res;
+        newData.createdAt = new Date();
         this.saveInput(newData);
       }
     )
   }
 
   saveInput(userTransport: TransportUser) {
-    this.transportUserService.post(userTransport)
+    this.transportUserService.post(userTransport).subscribe(
+      res => {
+        // console.log(res)
+      }
+    )
   }
 }
