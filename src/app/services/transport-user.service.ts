@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Transport} from "../entities/transport";
 import {TransportUser} from "../entities/transport-user";
 
 @Injectable({
@@ -13,6 +12,7 @@ export class TransportUserService {
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': 'false'
     }),
   };
   constructor(private httpClient: HttpClient) { }

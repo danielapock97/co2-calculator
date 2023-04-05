@@ -12,13 +12,13 @@ export class SidenavComponent implements AfterViewInit, OnInit{
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
-  @Input() user!: User;
+  user!: User;
 
   constructor(private breakpointObserver: BreakpointObserver) {
   }
 
   ngOnInit() {
-    console.log(this.user)
+
   }
 
   ngAfterViewInit() {

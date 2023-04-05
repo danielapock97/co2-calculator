@@ -1,11 +1,6 @@
 <div class="wrapper">
   <div class="main-panel">
-    <div *ngIf="!currentUser?.loggedIn">
-      <app-login (onLoginEvent)="onLogin($event)"></app-login>
-    </div>
-    <div *ngIf="currentUser?.loggedIn">
-      <app-overview [user]="currentUser"></app-overview>
-    </div>
+    <router-outlet></router-outlet>
   </div>
   <footer></footer>
 </div>

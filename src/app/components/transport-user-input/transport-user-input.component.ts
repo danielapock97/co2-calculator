@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {FormBuilder} from "@angular/forms";
 import {Transport} from "../../entities/transport";
 import {TransportService} from "../../services/transport.service";
@@ -15,7 +15,7 @@ import {Emissions} from "../../entities/emissions";
   templateUrl: './transport-user-input.component.html',
   styleUrls: ['./transport-user-input.component.css']
 })
-export class TransportUserInputComponent implements OnInit{
+export class TransportUserInputComponent implements OnInit {
   @Input() user!: User;
 
   inputForm = this.fb.group(
@@ -31,13 +31,15 @@ export class TransportUserInputComponent implements OnInit{
 
   modesOfTransport!: Transport[];
   emissions!: Emissions
+  savedData!: TransportUser
 
   constructor(
     private fb: FormBuilder,
     private transportService: TransportService,
     private transportUserService: TransportUserService,
     private calculationService: CalculationService
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.getModesOfTransport();
@@ -50,25 +52,25 @@ export class TransportUserInputComponent implements OnInit{
   }
 
   onSave() {
-    let data = this.inputForm.value as unknown as TransportUser;
-    data.calculatedEmissions = 0;
+    let newData = this.inputForm.value as unknown as TransportUser;
 
     let transport =
-      this.modesOfTransport.find(element => element.id === data.transportID)
+      this.modesOfTransport.find(element => element.id === newData.transportID)
 
     if (transport !== undefined) {
-      this.calculateEmissions(transport, data.distance_km)
+      this.calculateEmissions(transport, newData.distance_km, newData)
     }
-
-    // this.transportUserService.post(toPost).subscribe(res => {
-    // })
   }
 
-  calculateEmissions(transport: Transport, distance: number): void {
+  calculateEmissions(transport: Transport, distance: number, newData: TransportUser): void {
     this.calculationService.post(transport, distance).subscribe(
       res => {
-        this.emissions = res
-        console.log(res)
+        newData.userID = this.user.id
+        newData.calculatedEmissions = res
+        console.log(newData)
+        // this.transportUserService.post(newData).subscribe(res => {
+        //   console.log(res)
+        // })
       }
     )
   }

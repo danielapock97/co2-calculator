@@ -1,6 +1,6 @@
-import {Component, Input, Output, OnInit, EventEmitter} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from "../../entities/user";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder} from "@angular/forms";
 import {UserService} from "../../services/user.service";
 
@@ -10,9 +10,8 @@ import {UserService} from "../../services/user.service";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  @Output() onLoginEvent: EventEmitter<User> = new EventEmitter<User>();
 
-  currentUser!: User;
+  currentUserID!: number;
   availableUsers!: User[];
   loginForm = this.fb.group(
     {
@@ -26,7 +25,11 @@ export class LoginComponent implements OnInit {
       updateOn: "change"
     })
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder, private userService: UserService) {
+  constructor(private activeRoute: ActivatedRoute,
+              private fb: FormBuilder,
+              private userService: UserService,
+              private router: Router
+              ) {
   }
 
   ngOnInit() {
@@ -42,7 +45,7 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    this.currentUser = this.loginForm.value.id as unknown as User;
-    this.onLoginEvent.emit(this.currentUser);
+    this.currentUserID = this.loginForm.value.id as unknown as number
+    this.router.navigate(['overview/' + this.currentUserID])
   }
 }

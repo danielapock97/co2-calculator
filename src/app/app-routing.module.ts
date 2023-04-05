@@ -7,22 +7,27 @@ import {StatisticsComponent} from "./components/statistics/statistics.component"
 
 const routes: Routes = [
   {
+    path: '', component: LoginComponent, title: "Login"
+  },
+  {
     path: 'login', component: LoginComponent, title: "Login"
   },
   {
-    path: 'overview', component: OverviewComponent, title: "Overview"
-  },
-  {
-    path: 'new-calculation', component: TransportUserInputComponent, title: "New Calculation"
-  },
-  {
-    path: 'my-statistics', component: StatisticsComponent, title: "My Statistics"
-  },
-  {
-    path: 'statistics-all', component: StatisticsComponent, title: "Statistics"
-  },
-  {
-    path: 'about', component: StatisticsComponent, title: "About"
+    path: 'overview/:id', component: OverviewComponent,
+    children: [
+      {
+        path: 'new-calculation', component: TransportUserInputComponent, title: "New Calculation"
+      },
+      {
+        path: 'my-statistics', component: StatisticsComponent, title: "My Statistics"
+      },
+      {
+        path: 'statistics-all', component: StatisticsComponent, title: "Statistics"
+      },
+      {
+        path: 'about', component: StatisticsComponent, title: "About"
+      },
+    ]
   },
   {
     path: '**',

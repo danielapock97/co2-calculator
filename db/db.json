@@ -11,7 +11,7 @@
       "id": 1,
       "name": "Admin",
       "role": "Admin",
-      "loggedIn": true,
+      "loggedIn": false,
       "lastLoggedIn": "2023-03-31T12:52:05.517Z"
     }
   ],

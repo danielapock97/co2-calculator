@@ -13,6 +13,7 @@ import { OverviewComponent } from './components/overview/overview.component';
 import { TransportUserInputComponent } from './components/transport-user-input/transport-user-input.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import {MAT_DATE_LOCALE} from "@angular/material/core";
+import { LogoutComponent } from './components/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {MAT_DATE_LOCALE} from "@angular/material/core";
     LoginComponent,
     OverviewComponent,
     TransportUserInputComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

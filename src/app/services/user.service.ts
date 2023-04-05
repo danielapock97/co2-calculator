@@ -13,6 +13,7 @@ export class UserService {
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': 'false'
     }),
   };
   constructor(private httpClient: HttpClient) { }

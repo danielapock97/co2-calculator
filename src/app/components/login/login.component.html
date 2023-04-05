@@ -10,7 +10,7 @@
         <mat-label>Username</mat-label>
         <mat-select formControlName="id" class="mat-mdc-form-field-input-control">
           <mat-option>--No user selected--</mat-option>
-          <mat-option *ngFor="let user of availableUsers" [value]="user">{{user.name}}
+          <mat-option *ngFor="let user of availableUsers" [value]="user.id">{{user.name}}
           </mat-option>
         </mat-select>
       </mat-form-field>

@@ -15,7 +15,8 @@ export class CalculationService {
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': this.API_KEY
+      'Authorization': this.API_KEY,
+      'Access-Control-Allow-Origin': 'false'
     }),
   };
   constructor(private httpClient: HttpClient) { }
@@ -42,7 +43,6 @@ export class CalculationService {
     body.emission_factor.lca_activity = transport.lca_activity
     body.parameters.distance_unit = "km"
     body.parameters.distance = Number(distance);
-
 
     return this.httpClient.post<Emissions>(this.URL, body, this.httpOptions)
   }
