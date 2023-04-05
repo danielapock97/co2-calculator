@@ -25,4 +25,8 @@ export class UserService {
   getUserById(id: number): Observable<User> {
     return this.httpClient.get<User>(this.apiUrl + "/" + id)
   }
+
+  put(user: User): Observable<User> {
+    return this.httpClient.put<User>(this.apiUrl + "/" + user.id, user, this.httpOptions)
+  }
 }
