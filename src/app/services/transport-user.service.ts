@@ -20,4 +20,8 @@ export class TransportUserService {
   post(userTransport: TransportUser): Observable<TransportUser> {
     return this.httpClient.post<TransportUser>(this.apiUrl, userTransport, this.httpOptions)
   }
+
+  getEmissionsByUserAndMonth(userID: number) {
+
+  }
 }
