@@ -46,6 +46,9 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     this.currentUserID = this.loginForm.value.id as unknown as number
+    let currentUser = this.availableUsers.find(element => element.id === this.currentUserID)
+    currentUser!.loggedIn = true
+    this.userService.put(currentUser!)
     this.router.navigate(['overview/' + this.currentUserID])
   }
 }

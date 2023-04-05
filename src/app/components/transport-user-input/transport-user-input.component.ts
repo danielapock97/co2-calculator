@@ -9,6 +9,8 @@ import {MAT_DATE_LOCALE} from "@angular/material/core";
 import {CalculationService} from "../../services/calculation.service";
 import {Estimate} from "../../entities/estimate";
 import {Emissions} from "../../entities/emissions";
+import {UserService} from "../../services/user.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-transport-user-input',
@@ -16,7 +18,7 @@ import {Emissions} from "../../entities/emissions";
   styleUrls: ['./transport-user-input.component.css']
 })
 export class TransportUserInputComponent implements OnInit {
-  @Input() user!: User;
+  user!: User;
 
   inputForm = this.fb.group(
     {
@@ -30,25 +32,33 @@ export class TransportUserInputComponent implements OnInit {
     })
 
   modesOfTransport!: Transport[];
-  emissions!: Emissions
-  savedData!: TransportUser
+  emissions: Emissions | undefined
 
   constructor(
     private fb: FormBuilder,
     private transportService: TransportService,
     private transportUserService: TransportUserService,
-    private calculationService: CalculationService
+    private calculationService: CalculationService,
+    private userService: UserService,
+    private activeRoute: ActivatedRoute
   ) {
   }
 
   ngOnInit() {
     this.getModesOfTransport();
+    this.getUser()
+
   }
 
   getModesOfTransport() {
     this.transportService.get().subscribe(res => {
       this.modesOfTransport = res;
     })
+  }
+
+
+  getUser() {
+    this.user = JSON.parse(window.localStorage.getItem('user')!) as User
   }
 
   onSave() {
@@ -65,13 +75,16 @@ export class TransportUserInputComponent implements OnInit {
   calculateEmissions(transport: Transport, distance: number, newData: TransportUser): void {
     this.calculationService.post(transport, distance).subscribe(
       res => {
-        newData.userID = this.user.id
-        newData.calculatedEmissions = res
-        console.log(newData)
-        // this.transportUserService.post(newData).subscribe(res => {
-        //   console.log(res)
-        // })
+        this.emissions = res;
+
+        newData.userID = this.user.id;
+        newData.calculatedEmissions = res;
+        this.saveInput(newData);
       }
     )
+  }
+
+  saveInput(userTransport: TransportUser) {
+    this.transportUserService.post(userTransport)
   }
 }

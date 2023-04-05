@@ -9,17 +9,19 @@ import {Router} from "@angular/router";
   styleUrls: ['./logout.component.css']
 })
 export class LogoutComponent {
-  @Input() user!: User;
+  @Input() user: User | undefined;
 
   constructor(
     private userService: UserService,
     private router: Router
   ) {}
   onLogout() {
-    this.user.loggedIn = false;
-    this.userService.put(this.user).subscribe(res => {
-      console.log(this.user)
-    })
-    this.router.navigate([""])
+    if (this.user !== undefined){
+      this.user.loggedIn = false;
+      this.userService.put(this.user).subscribe(res => {
+      })
+      window.localStorage.removeItem('user')
+      this.router.navigate([""])
+    }
   }
 }

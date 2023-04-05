@@ -14,7 +14,7 @@ export class SidenavComponent implements AfterViewInit, OnInit{
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
-  user!: User;
+  user: User | undefined;
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -51,7 +51,7 @@ export class SidenavComponent implements AfterViewInit, OnInit{
     this.userService.getUserById(id).subscribe(
       res => {
         this.user = res
-        console.log(res)
+        window.localStorage.setItem('user', JSON.stringify(this.user))
       }
     )
   }
