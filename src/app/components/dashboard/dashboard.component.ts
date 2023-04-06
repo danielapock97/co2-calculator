@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import {User} from "../../entities/user";
+import {EmissionChartComponent} from "../charts/emission-chart/emission-chart.component";
 
 @Component({
   selector: 'app-dashboard',
@@ -60,4 +61,6 @@ export class DashboardComponent implements OnInit{
     [11, 'November'],
     [12, 'December'],
   ])
+  protected readonly EmissionChartComponent = EmissionChartComponent;
+  protected readonly Math = Math;
 }

@@ -20,6 +20,7 @@ import {CardComponent} from './components/card/card.component';
 import {TransportModesChartComponent} from './components/charts/transport-modes-chart/transport-modes-chart.component';
 import {EmissionChartComponent} from './components/charts/emission-chart/emission-chart.component';
 import {UserInputChartComponent} from './components/charts/user-input-chart/user-input-chart.component';
+import { MiniCardComponent } from './components/charts/mini-card/mini-card.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {UserInputChartComponent} from './components/charts/user-input-chart/user
     CardComponent,
     TransportModesChartComponent,
     EmissionChartComponent,
-    UserInputChartComponent
+    UserInputChartComponent,
+    MiniCardComponent
   ],
   imports: [
     BrowserModule,

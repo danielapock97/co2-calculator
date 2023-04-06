@@ -3,9 +3,11 @@
   <mat-grid-list cols="{{ ( cardLayout | async )?.columns }}" rowHeight="300px">
 
       <!--Mini Cards-->
-      <mat-grid-tile *ngFor="let i of [1, 2]" [colspan]="( cardLayout | async )?.miniCard?.cols"
+      <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard?.cols"
                      [rowspan]="( cardLayout | async )?.miniCard?.rows">
-        <app-card title="Card {{i}}"><div>Mini Card Content Here</div></app-card>
+        <app-card title="">
+          <app-mini-card [title]="'Total emissions'" [value]="Math.floor(EmissionChartComponent.sumAllEmissions*100)/100" ></app-mini-card>
+        </app-card>
       </mat-grid-tile>
     <!--Charts-->
     <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
