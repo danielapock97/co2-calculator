@@ -1,23 +1,68 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ChartConfiguration, ChartType} from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
+import {TransportUserService} from "../../../services/transport-user.service";
+import {User} from "../../../entities/user";
+import {DashboardComponent} from "../../dashboard/dashboard.component";
+import {TransportUser} from "../../../entities/transport-user";
+import {Emissions} from "../../../entities/emissions";
+import {EmissionsChartData} from "../../../entities/emissions-chart-data";
+import DataLabelsPlugin from "chartjs-plugin-datalabels";
+
 @Component({
   selector: 'app-emission-chart',
   templateUrl: './emission-chart.component.html',
   styleUrls: ['./emission-chart.component.css']
 })
 export class EmissionChartComponent implements OnInit{
-  constructor() {
+  allTransportsOfUser: TransportUser[] = [];
+  data: EmissionsChartData[] = [];
+  public static sumAllEmissions: number = 0;
+  constructor(private transportUserService: TransportUserService) {
   }
   ngOnInit() {
-  }
+    this.transportUserService.getTransportModesByUser(DashboardComponent.user.id).subscribe(
+      allData => {
+        this.allTransportsOfUser = allData
 
+        this.allTransportsOfUser.forEach(
+          userTransport => {
+            let userTransportMonth = (new Date(userTransport.date)).getMonth()
+            let index = this.data.findIndex( element =>
+              element.month === userTransportMonth
+            );
+            if (index !== -1) {
+              this.data.at(index)!.emissions += userTransport.calculatedEmissions.co2e
+            } else {
+              this.data.push({month: userTransportMonth, emissions: userTransport.calculatedEmissions.co2e})
+            }
+            EmissionChartComponent.sumAllEmissions += userTransport.calculatedEmissions.co2e as number;
+          }
+        )
+
+        this.data.sort((a,b) => a.month - b.month)
+
+        this.data.forEach(
+          data => {
+            this.lineChartData.datasets[0].data.push(data.emissions)
+            if (DashboardComponent.monthMapping.has(data.month)) {
+              let label = DashboardComponent.monthMapping.get(data.month) as string
+              this.lineChartData.labels!.push(label)
+              this.lineChartLabels.push(label)
+            }
+          }
+        )
+        this.chart?.update();
+        this.chart?.render();
+      }
+    )
+  }
 
   public lineChartData: ChartConfiguration['data'] = {
     datasets: [
       {
-        data: [ 65, 59, 80, 81, 56, 55, 40 ],
-        label: 'Series A',
+        data: [],
+        label: 'Emissions per month (co2e)',
         backgroundColor: 'rgba(148,159,177,0.2)',
         borderColor: 'rgba(148,159,177,1)',
         pointBackgroundColor: 'rgba(148,159,177,1)',
@@ -25,32 +70,9 @@ export class EmissionChartComponent implements OnInit{
         pointHoverBackgroundColor: '#fff',
         pointHoverBorderColor: 'rgba(148,159,177,0.8)',
         fill: 'origin',
-      },
-      {
-        data: [ 28, 48, 40, 19, 86, 27, 90 ],
-        label: 'Series B',
-        backgroundColor: 'rgba(77,83,96,0.2)',
-        borderColor: 'rgba(77,83,96,1)',
-        pointBackgroundColor: 'rgba(77,83,96,1)',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgba(77,83,96,1)',
-        fill: 'origin',
-      },
-      {
-        data: [ 180, 480, 770, 90, 1000, 270, 400 ],
-        label: 'Series C',
-        yAxisID: 'y1',
-        backgroundColor: 'rgba(255,0,0,0.3)',
-        borderColor: 'red',
-        pointBackgroundColor: 'rgba(148,159,177,1)',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-        fill: 'origin',
       }
     ],
-    labels: [ 'January', 'February', 'March', 'April', 'May', 'June', 'July' ]
+    labels: [  ]
   };
 
   public lineChartOptions: ChartConfiguration['options'] = {
@@ -60,31 +82,28 @@ export class EmissionChartComponent implements OnInit{
       }
     },
     scales: {
-      // We use this empty structure as a placeholder for dynamic theming.
       y:
         {
           position: 'left',
-        },
-      y1: {
-        position: 'right',
-        grid: {
-          color: 'rgba(255,0,0,0.3)',
-        },
-        ticks: {
-          color: 'red'
         }
-      }
     },
 
     plugins: {
       legend: { display: true },
+      datalabels: {
+        formatter: function(value, context) {
+          return Math.floor(value*100)/100 + ' co2e'
+        },
+        align: 'top',
+        color: 'black'
+      },
     }
   };
 
   public lineChartType: ChartType = 'line';
-  public lineChartPlugins = [];
+  public lineChartPlugins = [DataLabelsPlugin];
   public lineChartLegend = true;
-  public lineChartLabels: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChartLabels: string[] = [];
 
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 

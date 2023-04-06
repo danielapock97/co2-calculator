@@ -6,6 +6,7 @@ import {User} from "../../../entities/user";
 import {TransportUserService} from "../../../services/transport-user.service";
 import {TransportUser} from "../../../entities/transport-user";
 import {UserTransportData} from "../../../entities/user-transport-data";
+import {DashboardComponent} from "../../dashboard/dashboard.component";
 
 @Component({
   selector: 'app-transport-modes-chart',
@@ -15,19 +16,9 @@ import {UserTransportData} from "../../../entities/user-transport-data";
 export class TransportModesChartComponent implements OnInit {
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
 
-  user!: User;
   allTransportsOfUser: TransportUser[] | undefined;
   data: UserTransportData[] = []
-
-  private transportIdMapping: Map<string,string> = new Map<string, string>([
-    ['passenger_train-route_subway-fuel_source_na', 'Subway'],
-    ['passenger_vehicle-vehicle_type_automobile-fuel_source_na-distance_na-engine_size_na', 'Automobile'],
-    ['passenger_vehicle-vehicle_type_bicycle-fuel_source_na-distance_na-engine_size_na', 'Bicycle'],
-    ['passenger_vehicle-vehicle_type_bus-fuel_source_na-distance_na-engine_size_na', 'Bus'],
-    ['passenger_vehicle-vehicle_type_taxi-fuel_source_na-distance_na-engine_size_na', 'Taxi'],
-    ['passenger_vehicle-vehicle_type_van-fuel_source_na-distance_na-engine_size_na', 'Van']
-  ])
-
+  sumAllUsagesOfTransport: number = 0;
   // Pie
   public pieChartOptions: ChartConfiguration<"pie">["options"] = {
     responsive: true,
@@ -36,7 +27,11 @@ export class TransportModesChartComponent implements OnInit {
         display: true,
         position: 'left',
       },
-      datalabels: {},
+      datalabels: {
+        formatter: function(value, context) {
+          return Math.floor(value) + '%'
+        }
+      },
     },
   };
 
@@ -74,9 +69,7 @@ export class TransportModesChartComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.user = JSON.parse(window.localStorage.getItem('user')!) as User;
-
-    this.transportUserService.getTransportModesByUser(this.user.id).subscribe(
+    this.transportUserService.getTransportModesByUser(DashboardComponent.user.id).subscribe(
       allData => {
         this.allTransportsOfUser = allData
 
@@ -90,14 +83,15 @@ export class TransportModesChartComponent implements OnInit {
             } else {
               this.data.push({transportID: userTransport.transportID, count: 1})
             }
+            this.sumAllUsagesOfTransport++;
           }
         )
 
         this.data.forEach(
           data => {
-            this.pieChartData.datasets[0].data.push(data.count)
-            if (this.transportIdMapping.has(data.transportID)) {
-              let label = this.transportIdMapping.get(data.transportID) as string
+            this.pieChartData.datasets[0].data.push(data.count / this.sumAllUsagesOfTransport * 100)
+            if (DashboardComponent.transportIdMapping.has(data.transportID)) {
+              let label = DashboardComponent.transportIdMapping.get(data.transportID) as string
               this.pieChartData.labels!.push(label)
               this.pieChartLabels.push(label)
             }

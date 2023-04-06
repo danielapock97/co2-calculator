@@ -28,6 +28,7 @@ export class TransportUserService {
   getTransportModesByUser(userID: number): Observable<TransportUser[]> {
     let httpsParams = new HttpParams()
       .set('userID', userID)
+      .set('orderBy', 'date')
 
     return this.httpClient.get<TransportUser[]>(this.apiUrl, {params: httpsParams})
   }
