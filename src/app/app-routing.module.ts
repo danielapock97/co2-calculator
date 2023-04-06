@@ -4,6 +4,8 @@ import {LoginComponent} from "./components/login/login.component";
 import {OverviewComponent} from "./components/overview/overview.component";
 import {TransportUserInputComponent} from "./components/transport-user-input/transport-user-input.component";
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
+import {AboutComponent} from "./components/about/about.component";
+import {InfoComponent} from "./components/info/info.component";
 
 const routes: Routes = [
   {
@@ -16,6 +18,9 @@ const routes: Routes = [
     path: 'overview/:id', component: OverviewComponent,
     children: [
       {
+        path: 'info', component: InfoComponent, title: "Info"
+      },
+      {
         path: 'new-calculation', component: TransportUserInputComponent, title: "New Calculation"
       },
       {
@@ -25,7 +30,7 @@ const routes: Routes = [
         path: 'statistics-all', component: DashboardComponent, title: "Statistics"
       },
       {
-        path: 'about', component: TransportUserInputComponent, title: "About"
+        path: 'about', component: AboutComponent, title: "About"
       },
     ]
   },

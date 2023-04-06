@@ -1,0 +1,26 @@
+.card {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
+.title {
+  padding-bottom: 1%;
+  padding-top: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.content {
+  padding-bottom: 30%;
+  padding-left: 30%;
+  padding-right: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}

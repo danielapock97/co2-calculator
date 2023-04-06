@@ -21,6 +21,8 @@ import {TransportModesChartComponent} from './components/charts/transport-modes-
 import {EmissionChartComponent} from './components/charts/emission-chart/emission-chart.component';
 import { MiniCardComponent } from './components/charts/mini-card/mini-card.component';
 import { EmissionsPerTransportypeChartComponent } from './components/charts/emissions-per-transportype-chart/emissions-per-transportype-chart.component';
+import { AboutComponent } from './components/about/about.component';
+import { InfoComponent } from './components/info/info.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { EmissionsPerTransportypeChartComponent } from './components/charts/emis
     TransportModesChartComponent,
     EmissionChartComponent,
     MiniCardComponent,
-    EmissionsPerTransportypeChartComponent
+    EmissionsPerTransportypeChartComponent,
+    AboutComponent,
+    InfoComponent
   ],
   imports: [
     BrowserModule,
