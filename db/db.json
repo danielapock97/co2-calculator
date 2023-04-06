@@ -429,6 +429,76 @@
         }
       },
       "createdAt": "2023-04-05T16:19:16.405Z"
+    },
+    {
+      "id": 11,
+      "date": "2023-04-06T22:00:00.000Z",
+      "transportID": "passenger_vehicle-vehicle_type_automobile-fuel_source_na-distance_na-engine_size_na",
+      "distance_km": "33",
+      "userID": 0,
+      "calculatedEmissions": {
+        "co2e": 15.279,
+        "co2e_unit": "kg",
+        "co2e_calculation_method": "ar4",
+        "co2e_calculation_origin": "source",
+        "emission_factor": {
+          "name": "Automobile",
+          "activity_id": "passenger_vehicle-vehicle_type_automobile-fuel_source_na-distance_na-engine_size_na",
+          "uuid": "0529aa28-d6b8-4309-b614-63d79c7dcd58",
+          "id": "passenger_vehicle-vehicle_type_automobile-fuel_source_na-distance_na-engine_size_na",
+          "access_type": "public",
+          "source": "GHG Protocol",
+          "source_dataset": "Quantis and GHG Protocol Scope 3 Evaluator",
+          "year": "2017",
+          "region": "GLOBAL",
+          "category": "Road Travel",
+          "lca_activity": "unknown",
+          "data_quality_flags": []
+        },
+        "constituent_gases": {
+          "co2e_total": 15.279,
+          "co2e_other": null,
+          "co2": null,
+          "ch4": null,
+          "n2o": null
+        }
+      },
+      "createdAt": "2023-04-06T11:39:42.571Z"
+    },
+    {
+      "id": 12,
+      "date": "2023-04-05T22:00:00.000Z",
+      "transportID": "passenger_train-route_subway-fuel_source_na",
+      "distance_km": "9",
+      "userID": 0,
+      "calculatedEmissions": {
+        "co2e": 0.5940000000000001,
+        "co2e_unit": "kg",
+        "co2e_calculation_method": "ar4",
+        "co2e_calculation_origin": "source",
+        "emission_factor": {
+          "name": "Subway",
+          "activity_id": "passenger_train-route_subway-fuel_source_na",
+          "uuid": "b1575ee1-87c9-4560-a09d-e423627c8548",
+          "id": "passenger_train-route_subway-fuel_source_na",
+          "access_type": "public",
+          "source": "GHG Protocol",
+          "source_dataset": "Quantis and GHG Protocol Scope 3 Evaluator",
+          "year": "2017",
+          "region": "GLOBAL",
+          "category": "Rail Travel",
+          "lca_activity": "unknown",
+          "data_quality_flags": []
+        },
+        "constituent_gases": {
+          "co2e_total": 0.5940000000000001,
+          "co2e_other": null,
+          "co2": null,
+          "ch4": null,
+          "n2o": null
+        }
+      },
+      "createdAt": "2023-04-06T11:40:12.716Z"
     }
   ]
 }

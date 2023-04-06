@@ -6,6 +6,7 @@ import {TransportUserInputComponent} from "./components/transport-user-input/tra
 import {StatisticsComponent} from "./components/statistics/statistics.component";
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
 import {UserInputChartComponent} from "./components/charts/user-input-chart/user-input-chart.component";
+import {EmissionChartComponent} from "./components/charts/emission-chart/emission-chart.component";
 
 const routes: Routes = [
   {
@@ -21,7 +22,7 @@ const routes: Routes = [
         path: 'new-calculation', component: TransportUserInputComponent, title: "New Calculation"
       },
       {
-        path: 'my-statistics', component: UserInputChartComponent, title: "My Statistics"
+        path: 'my-statistics', component: DashboardComponent, title: "My Statistics"
       },
       {
         path: 'statistics-all', component: StatisticsComponent, title: "Statistics"

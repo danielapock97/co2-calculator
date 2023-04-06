@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {TransportUser} from "../entities/transport-user";
 
@@ -23,5 +23,12 @@ export class TransportUserService {
 
   getEmissionsByUserAndMonth(userID: number) {
 
+  }
+
+  getTransportModesByUser(userID: number): Observable<TransportUser[]> {
+    let httpsParams = new HttpParams()
+      .set('userID', userID)
+
+    return this.httpClient.get<TransportUser[]>(this.apiUrl, {params: httpsParams})
   }
 }

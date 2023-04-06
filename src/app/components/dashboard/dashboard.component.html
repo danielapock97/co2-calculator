@@ -1,26 +1,28 @@
 <!--dash.component.html-->
 <div class="grid-container">
-  <h1 class="mat-h1">Dashboard</h1>
-  <mat-grid-list cols="{{ ( cardLayout | async )?.columns }}" rowHeight="200px">
-    <!--Mini Cards-->
-    <mat-grid-tile *ngFor="let i of [1, 2, 3, 4]" [colspan]="( cardLayout | async )?.miniCard?.cols"
-                   [rowspan]="( cardLayout | async )?.miniCard?.rows">
-      <app-card title="Card {{i}}">
-        <div>Mini Card Content Here</div>
-      </app-card>
-    </mat-grid-tile>
+  <mat-grid-list cols="{{ ( cardLayout | async )?.columns }}" rowHeight="300px">
+
+      <!--Mini Cards-->
+      <mat-grid-tile *ngFor="let i of [1, 2]" [colspan]="( cardLayout | async )?.miniCard?.cols"
+                     [rowspan]="( cardLayout | async )?.miniCard?.rows">
+        <app-card title="Card {{i}}"><div>Mini Card Content Here</div></app-card>
+      </mat-grid-tile>
     <!--Charts-->
-    <mat-grid-tile *ngFor="let i of [5, 6, 7, 8]" [colspan]="( cardLayout | async )?.chart?.cols"
-                   [rowspan]="( cardLayout | async )?.chart?.rows">
-      <app-card title="Card {{i}}">
-        <div>Chart Content Here</div>
+    <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
+      <app-card title="Emissions per month">
+        <app-emission-chart></app-emission-chart>
       </app-card>
     </mat-grid-tile>
-    <!--Table-->
-    <mat-grid-tile [colspan]="( cardLayout | async )?.table?.cols" [rowspan]="( cardLayout | async )?.table?.rows">
-      <app-card title="Card 9">
-        <div>Table Content Here</div>
+    <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
+      <app-card title="Transport types used (all)">
+        <app-transport-modes-chart></app-transport-modes-chart>
       </app-card>
     </mat-grid-tile>
+    <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
+      <app-card title="Emissions per Transport">
+        <app-user-input-chart></app-user-input-chart>
+      </app-card>
+    </mat-grid-tile>
+
   </mat-grid-list>
 </div>
