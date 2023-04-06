@@ -21,15 +21,15 @@ export class TransportUserService {
     return this.httpClient.post<TransportUser>(this.apiUrl, userTransport, this.httpOptions)
   }
 
-  getEmissionsByUserAndMonth(userID: number) {
-
-  }
-
   getTransportsByUser(userID: number): Observable<TransportUser[]> {
     let httpsParams = new HttpParams()
       .set('userID', userID)
       .set('orderBy', 'date')
 
     return this.httpClient.get<TransportUser[]>(this.apiUrl, {params: httpsParams})
+  }
+
+  get(): Observable<TransportUser[]> {
+    return this.httpClient.get<TransportUser[]>(this.apiUrl)
   }
 }

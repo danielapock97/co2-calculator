@@ -6,6 +6,7 @@ import {TransportUserInputComponent} from "./components/transport-user-input/tra
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
 import {AboutComponent} from "./components/about/about.component";
 import {InfoComponent} from "./components/info/info.component";
+import {AdminDashboardComponent} from "./components/adminDashboard/admin-dashboard.component";
 
 const routes: Routes = [
   {
@@ -18,6 +19,9 @@ const routes: Routes = [
     path: 'overview/:id', component: OverviewComponent,
     children: [
       {
+        path: '', component: InfoComponent
+      },
+      {
         path: 'info', component: InfoComponent, title: "Info"
       },
       {
@@ -27,7 +31,7 @@ const routes: Routes = [
         path: 'my-statistics', component: DashboardComponent, title: "My Statistics"
       },
       {
-        path: 'statistics-all', component: DashboardComponent, title: "Statistics"
+        path: 'statistics-all', component: AdminDashboardComponent, title: "Admin Dashboard"
       },
       {
         path: 'about', component: AboutComponent, title: "About"

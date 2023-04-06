@@ -23,6 +23,11 @@ import { MiniCardComponent } from './components/charts/mini-card/mini-card.compo
 import { EmissionsPerTransportypeChartComponent } from './components/charts/emissions-per-transportype-chart/emissions-per-transportype-chart.component';
 import { AboutComponent } from './components/about/about.component';
 import { InfoComponent } from './components/info/info.component';
+import { AdminDashboardComponent } from "./components/adminDashboard/admin-dashboard.component";
+import { AdminEmissionChartComponent } from "./components/admin-charts/admin-emission-chart/admin-emission-chart.component";
+import { AdminEmissionsPerTransportypeChartComponent } from "./components/admin-charts/admin-emissions-per-transportype-chart/admin-emissions-per-transportype-chart.component";
+import { AdminMiniCardComponent } from "./components/admin-charts/admin-mini-card/admin-mini-card.component";
+import { AdminTransportModesChartComponent } from "./components/admin-charts/admin-transport-modes-chart/admin-transport-modes-chart.component";
 
 @NgModule({
   declarations: [
@@ -39,7 +44,12 @@ import { InfoComponent } from './components/info/info.component';
     MiniCardComponent,
     EmissionsPerTransportypeChartComponent,
     AboutComponent,
-    InfoComponent
+    InfoComponent,
+    AdminDashboardComponent,
+    AdminEmissionChartComponent,
+    AdminEmissionsPerTransportypeChartComponent,
+    AdminMiniCardComponent,
+    AdminTransportModesChartComponent
   ],
   imports: [
     BrowserModule,

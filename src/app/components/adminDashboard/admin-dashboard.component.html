@@ -1,0 +1,30 @@
+<!--dash.component.html-->
+<div class="grid-container">
+  <mat-grid-list cols="{{ ( cardLayout | async )?.columns }}" rowHeight="300px">
+
+      <!--Mini Cards-->
+      <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard?.cols"
+                     [rowspan]="( cardLayout | async )?.miniCard?.rows">
+        <app-card title="">
+          <app-admin-mini-card [title]="'Total emissions'" [value]="Math.floor(AdminEmissionChartComponent.sumAllEmissions*100)/100" ></app-admin-mini-card>
+        </app-card>
+      </mat-grid-tile>
+    <!--Charts-->
+    <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
+      <app-card title="Emissions per month">
+        <app-admin-emission-chart></app-admin-emission-chart>
+      </app-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
+      <app-card title="Transport types used (all)">
+        <app-admin-admin-transport-modes-chart></app-admin-admin-transport-modes-chart>
+      </app-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
+      <app-card title="Emissions per Transport">
+        <app-admin-admin-emissions-per-transportype-chart></app-admin-admin-emissions-per-transportype-chart>
+      </app-card>
+    </mat-grid-tile>
+
+  </mat-grid-list>
+</div>
