@@ -1,1 +1,65 @@
-<p>info works!</p>
+<div class="card">
+  <mat-card-title class="title">
+    <h1>How to use this tool:</h1>
+  </mat-card-title>
+  <mat-card-content>
+    <p>
+    <mat-list role="list" class="my-list">
+      <li class="my-list" role="listitem" *ngIf="user.role=='Admin'">
+        <p>At the 'New Data' section your employees and you put in their dataof transports. There are a few transports
+          possible. Each of them has its own emission factor provided by `https://www.climatiq.io/`.
+          The emission factors provided are from notable sources as GHG Protocol or ADEME. In this project only GHG
+          Protocol emission factors are used. Different types of transports available at the moment: </p>
+      </li>
+      <li class="my-list mat-list-item" role="listitem">
+        <p>At the 'New Data' section you put in your data of transports. There are a few transports
+          possible. Each of them has its own emission factor provided by
+          <a href="https://www.climatiq.io/">Climatiq.io</a>.
+          The emission factors provided are from notable sources as GHG Protocol or ADEME. In this project only GHG
+          Protocol emission factors are used. Different types of transports available at the moment:
+        </p>
+        <mat-list role="list">
+          <mat-list-item role="listitem">
+            <mat-icon>directions_subway</mat-icon>
+            <span>Subway</span>
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <mat-icon>directions_car</mat-icon>
+            <span>Automobile</span>
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <mat-icon>directions_bike</mat-icon>
+            Bicylce
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <mat-icon>directions_bus</mat-icon>
+            Bus
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <mat-icon>directions_car</mat-icon>
+            Taxi
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <mat-icon>directions_car</mat-icon>
+            Van
+          </mat-list-item>
+        </mat-list>
+      </li>
+      <mat-list-item role="listitem">
+        <p>At the 'My statistics' section you see a dashboard with statistics on how high your carbon emissions where
+          with the different types of transport.</p>
+      </mat-list-item>
+      <mat-list-item role="listitem" *ngIf="user.role=='Admin'">
+        <p>At the 'Admin Dashboard' section you see a dashboard with statistics about the carbon emissions
+          of all users combined (yours too).</p>
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <p>The 'About' section shows some general information about the project aka impressum.</p>
+      </mat-list-item>
+      <mat-list-item *ngIf="user.role=='Admin'">
+        <mat-error>The login is not safe yet, please update it yourself if you want to use this project!</mat-error>
+      </mat-list-item>
+    </mat-list>
+    </p>
+  </mat-card-content>
+</div>
