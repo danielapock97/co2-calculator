@@ -1,16 +1,17 @@
-import { Component, ViewChild } from '@angular/core';
-import { Chart, ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {ChartConfiguration, ChartType} from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 @Component({
   selector: 'app-emission-chart',
   templateUrl: './emission-chart.component.html',
   styleUrls: ['./emission-chart.component.css']
 })
-export class EmissionChartComponent {
-  private newLabel? = 'New label';
-
+export class EmissionChartComponent implements OnInit{
   constructor() {
   }
+  ngOnInit() {
+  }
+
 
   public lineChartData: ChartConfiguration['data'] = {
     datasets: [
@@ -81,58 +82,10 @@ export class EmissionChartComponent {
   };
 
   public lineChartType: ChartType = 'line';
+  public lineChartPlugins = [];
+  public lineChartLegend = true;
+  public lineChartLabels: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
-  private static generateNumber(i: number): number {
-    return Math.floor((Math.random() * (i < 2 ? 100 : 1000)) + 1);
-  }
-
-  public randomize(): void {
-    for (let i = 0; i < this.lineChartData.datasets.length; i++) {
-      for (let j = 0; j < this.lineChartData.datasets[i].data.length; j++) {
-        this.lineChartData.datasets[i].data[j] = EmissionChartComponent.generateNumber(i);
-      }
-    }
-    this.chart?.update();
-  }
-
-  // events
-  public chartClicked({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
-    console.log(event, active);
-  }
-
-  public chartHovered({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
-    console.log(event, active);
-  }
-
-  public hideOne(): void {
-    const isHidden = this.chart?.isDatasetHidden(1);
-    this.chart?.hideDataset(1, !isHidden);
-  }
-
-  public pushOne(): void {
-    this.lineChartData.datasets.forEach((x: { data: any[]; }, i: any) => {
-      const num = EmissionChartComponent.generateNumber(i);
-      x.data.push(num);
-    });
-    this.lineChartData?.labels?.push(`Label ${ this.lineChartData.labels.length }`);
-
-    this.chart?.update();
-  }
-
-  public changeColor(): void {
-    this.lineChartData.datasets[2].borderColor = 'green';
-    this.lineChartData.datasets[2].backgroundColor = `rgba(0, 255, 0, 0.3)`;
-
-    this.chart?.update();
-  }
-
-  public changeLabel(): void {
-    const tmp = this.newLabel;
-    this.newLabel = this.lineChartData.datasets[2].label;
-    this.lineChartData.datasets[2].label = tmp;
-
-    this.chart?.update();
-  }
 }

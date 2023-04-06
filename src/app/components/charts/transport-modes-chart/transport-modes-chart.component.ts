@@ -1,11 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ChartConfiguration, ChartData, ChartEvent, ChartType, Plugin} from 'chart.js';
+import {ChartConfiguration, ChartData} from 'chart.js';
 import {BaseChartDirective} from 'ng2-charts';
 import DataLabelsPlugin from 'chartjs-plugin-datalabels'
 import {User} from "../../../entities/user";
 import {TransportUserService} from "../../../services/transport-user.service";
 import {TransportUser} from "../../../entities/transport-user";
-import {concatMap, from, groupBy, map, mergeMap, of, reduce, tap, toArray, zip} from 'rxjs';
 import {UserTransportData} from "../../../entities/user-transport-data";
 
 @Component({
@@ -65,7 +64,7 @@ export class TransportModesChartComponent implements OnInit {
       borderAlign: 'inner'
     }]
   };
-  public pieChartType: ChartConfiguration<"pie" & "pie", number[], string | string[]>["type"] = 'pie';
+  public pieChartType: ChartConfiguration<"pie", number[], string | string[]>["type"] = 'pie';
   public pieChartPlugins = [DataLabelsPlugin];
   public pieChartLabels: string[] = [];
   public pieChartLegend = true;
@@ -108,43 +107,5 @@ export class TransportModesChartComponent implements OnInit {
         this.chart?.render();
       }
     )
-
-  }
-
-
-  addSlice(): void {
-    if (this.pieChartData.labels) {
-      this.pieChartData.labels.push(['Line 1', 'Line 2', 'Line 3']);
-    }
-
-    this.pieChartData.datasets[0].data.push(400);
-
-    this.chart?.update();
-  }
-
-  removeSlice(): void {
-    if (this.pieChartData.labels) {
-      this.pieChartData.labels.pop();
-    }
-
-    this.pieChartData.datasets[0].data.pop();
-
-    this.chart?.update();
-  }
-
-  changeLegendPosition(): void {
-    if (this.pieChartOptions?.plugins?.legend) {
-      this.pieChartOptions.plugins.legend.position = this.pieChartOptions.plugins.legend.position === 'left' ? 'top' : 'left';
-    }
-
-    this.chart?.render();
-  }
-
-  toggleLegend(): void {
-    if (this.pieChartOptions?.plugins?.legend) {
-      this.pieChartOptions.plugins.legend.display = !this.pieChartOptions.plugins.legend.display;
-    }
-
-    this.chart?.render();
   }
 }

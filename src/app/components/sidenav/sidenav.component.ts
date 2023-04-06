@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, ViewChild, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ViewChild, OnInit} from '@angular/core';
 import {BreakpointObserver} from "@angular/cdk/layout";
 import {MatSidenav} from "@angular/material/sidenav";
 import {User} from "../../entities/user";

@@ -3,10 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from "./components/login/login.component";
 import {OverviewComponent} from "./components/overview/overview.component";
 import {TransportUserInputComponent} from "./components/transport-user-input/transport-user-input.component";
-import {StatisticsComponent} from "./components/statistics/statistics.component";
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
-import {UserInputChartComponent} from "./components/charts/user-input-chart/user-input-chart.component";
-import {EmissionChartComponent} from "./components/charts/emission-chart/emission-chart.component";
 
 const routes: Routes = [
   {
@@ -25,10 +22,10 @@ const routes: Routes = [
         path: 'my-statistics', component: DashboardComponent, title: "My Statistics"
       },
       {
-        path: 'statistics-all', component: StatisticsComponent, title: "Statistics"
+        path: 'statistics-all', component: DashboardComponent, title: "Statistics"
       },
       {
-        path: 'about', component: StatisticsComponent, title: "About"
+        path: 'about', component: TransportUserInputComponent, title: "About"
       },
     ]
   },

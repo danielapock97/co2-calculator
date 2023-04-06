@@ -11,7 +11,6 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {OverviewComponent} from './components/overview/overview.component';
 import {TransportUserInputComponent} from './components/transport-user-input/transport-user-input.component';
-import {StatisticsComponent} from './components/statistics/statistics.component';
 import {MAT_DATE_LOCALE} from "@angular/material/core";
 import {LogoutComponent} from './components/logout/logout.component';
 import {NgChartsConfiguration, NgChartsModule} from "ng2-charts";
@@ -29,7 +28,6 @@ import {UserInputChartComponent} from './components/charts/user-input-chart/user
     LoginComponent,
     OverviewComponent,
     TransportUserInputComponent,
-    StatisticsComponent,
     LogoutComponent,
     DashboardComponent,
     CardComponent,
