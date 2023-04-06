@@ -19,7 +19,7 @@ export class TransportModesChartComponent implements OnInit {
   allTransportsOfUser: TransportUser[] | undefined;
   data: UserTransportData[] = []
   sumAllUsagesOfTransport: number = 0;
-  // Pie
+
   public pieChartOptions: ChartConfiguration<"pie">["options"] = {
     responsive: true,
     plugins: {
@@ -69,7 +69,7 @@ export class TransportModesChartComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.transportUserService.getTransportModesByUser(DashboardComponent.user.id).subscribe(
+    this.transportUserService.getTransportsByUser(DashboardComponent.user.id).subscribe(
       allData => {
         this.allTransportsOfUser = allData
 

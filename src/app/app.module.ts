@@ -19,8 +19,8 @@ import {LayoutModule} from '@angular/cdk/layout';
 import {CardComponent} from './components/card/card.component';
 import {TransportModesChartComponent} from './components/charts/transport-modes-chart/transport-modes-chart.component';
 import {EmissionChartComponent} from './components/charts/emission-chart/emission-chart.component';
-import {UserInputChartComponent} from './components/charts/user-input-chart/user-input-chart.component';
 import { MiniCardComponent } from './components/charts/mini-card/mini-card.component';
+import { EmissionsPerTransportypeChartComponent } from './components/charts/emissions-per-transportype-chart/emissions-per-transportype-chart.component';
 
 @NgModule({
   declarations: [
@@ -34,8 +34,8 @@ import { MiniCardComponent } from './components/charts/mini-card/mini-card.compo
     CardComponent,
     TransportModesChartComponent,
     EmissionChartComponent,
-    UserInputChartComponent,
-    MiniCardComponent
+    MiniCardComponent,
+    EmissionsPerTransportypeChartComponent
   ],
   imports: [
     BrowserModule,

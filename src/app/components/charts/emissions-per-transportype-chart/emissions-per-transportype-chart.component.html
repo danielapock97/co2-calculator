@@ -1,8 +1,11 @@
 <div class="chartContainer">
-  <canvas baseChart class="chart"
+
+  <canvas baseChart
           [data]="barChartData"
+          [labels]="barChartLabels"
           [options]="barChartOptions"
           [plugins]="barChartPlugins"
+          [legend]="barChartLegend"
           [type]="barChartType">
   </canvas>
 </div>

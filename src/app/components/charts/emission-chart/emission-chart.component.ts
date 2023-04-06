@@ -21,7 +21,7 @@ export class EmissionChartComponent implements OnInit{
   constructor(private transportUserService: TransportUserService) {
   }
   ngOnInit() {
-    this.transportUserService.getTransportModesByUser(DashboardComponent.user.id).subscribe(
+    this.transportUserService.getTransportsByUser(DashboardComponent.user.id).subscribe(
       allData => {
         this.allTransportsOfUser = allData
 

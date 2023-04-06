@@ -1,21 +1,21 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NgChartsModule } from 'ng2-charts';
 
-import { UserInputChartComponent } from './user-input-chart.component';
+import { EmissionsPerTransportypeChartComponent } from './emissions-per-transportype-chart.component';
 
-describe('UserInputChartComponent', () => {
-  let component: UserInputChartComponent;
-  let fixture: ComponentFixture<UserInputChartComponent>;
+describe('EmissionsPerTransportypeChartComponent', () => {
+  let component: EmissionsPerTransportypeChartComponent;
+  let fixture: ComponentFixture<EmissionsPerTransportypeChartComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserInputChartComponent ],
+      declarations: [ EmissionsPerTransportypeChartComponent ],
       imports: [ NgChartsModule ]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UserInputChartComponent);
+    fixture = TestBed.createComponent(EmissionsPerTransportypeChartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
