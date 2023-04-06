@@ -1014,6 +1014,286 @@
         }
       },
       "createdAt": "2023-04-06T20:01:15.441Z"
+    },
+    {
+      "id": 28,
+      "date": "2023-06-09T22:00:00.000Z",
+      "transportID": "passenger_train-route_subway-fuel_source_na",
+      "distance_km": "22",
+      "userID": 1,
+      "calculatedEmissions": {
+        "co2e": 1.452,
+        "co2e_unit": "kg",
+        "co2e_calculation_method": "ar4",
+        "co2e_calculation_origin": "source",
+        "emission_factor": {
+          "name": "Subway",
+          "activity_id": "passenger_train-route_subway-fuel_source_na",
+          "uuid": "b1575ee1-87c9-4560-a09d-e423627c8548",
+          "id": "passenger_train-route_subway-fuel_source_na",
+          "access_type": "public",
+          "source": "GHG Protocol",
+          "source_dataset": "Quantis and GHG Protocol Scope 3 Evaluator",
+          "year": "2017",
+          "region": "GLOBAL",
+          "category": "Rail Travel",
+          "lca_activity": "unknown",
+          "data_quality_flags": []
+        },
+        "constituent_gases": {
+          "co2e_total": 1.452,
+          "co2e_other": null,
+          "co2": null,
+          "ch4": null,
+          "n2o": null
+        }
+      },
+      "createdAt": "2023-04-06T20:18:19.755Z"
+    },
+    {
+      "id": 29,
+      "date": "2023-04-28T22:00:00.000Z",
+      "transportID": "passenger_vehicle-vehicle_type_bicycle-fuel_source_na-distance_na-engine_size_na",
+      "distance_km": "9",
+      "userID": 1,
+      "calculatedEmissions": {
+        "co2e": 0,
+        "co2e_unit": "kg",
+        "co2e_calculation_method": "ar4",
+        "co2e_calculation_origin": "source",
+        "emission_factor": {
+          "name": "Bicycle",
+          "activity_id": "passenger_vehicle-vehicle_type_bicycle-fuel_source_na-distance_na-engine_size_na",
+          "uuid": "16b957aa-2d79-4db8-ae75-f5cd34141673",
+          "id": "passenger_vehicle-vehicle_type_bicycle-fuel_source_na-distance_na-engine_size_na",
+          "access_type": "public",
+          "source": "GHG Protocol",
+          "source_dataset": "Quantis and GHG Protocol Scope 3 Evaluator",
+          "year": "2017",
+          "region": "GLOBAL",
+          "category": "Road Travel",
+          "lca_activity": "unknown",
+          "data_quality_flags": []
+        },
+        "constituent_gases": {
+          "co2e_total": 0,
+          "co2e_other": null,
+          "co2": null,
+          "ch4": null,
+          "n2o": null
+        }
+      },
+      "createdAt": "2023-04-06T20:19:25.003Z"
+    },
+    {
+      "id": 30,
+      "date": "2023-09-14T22:00:00.000Z",
+      "transportID": "passenger_vehicle-vehicle_type_taxi-fuel_source_na-distance_na-engine_size_na",
+      "distance_km": "99",
+      "userID": 1,
+      "calculatedEmissions": {
+        "co2e": 27.2349,
+        "co2e_unit": "kg",
+        "co2e_calculation_method": "ar4",
+        "co2e_calculation_origin": "source",
+        "emission_factor": {
+          "name": "Taxi",
+          "activity_id": "passenger_vehicle-vehicle_type_taxi-fuel_source_na-distance_na-engine_size_na",
+          "uuid": "f83eeae7-43a5-4460-9988-c21327ca09af",
+          "id": "passenger_vehicle-vehicle_type_taxi-fuel_source_na-distance_na-engine_size_na",
+          "access_type": "public",
+          "source": "GHG Protocol",
+          "source_dataset": "Quantis and GHG Protocol Scope 3 Evaluator",
+          "year": "2017",
+          "region": "GLOBAL",
+          "category": "Road Travel",
+          "lca_activity": "unknown",
+          "data_quality_flags": []
+        },
+        "constituent_gases": {
+          "co2e_total": 27.2349,
+          "co2e_other": null,
+          "co2": null,
+          "ch4": null,
+          "n2o": null
+        }
+      },
+      "createdAt": "2023-04-06T20:21:53.124Z"
+    },
+    {
+      "id": 31,
+      "date": "2023-04-05T22:00:00.000Z",
+      "transportID": "passenger_train-route_subway-fuel_source_na",
+      "distance_km": "5",
+      "userID": 1,
+      "calculatedEmissions": {
+        "co2e": 0.33,
+        "co2e_unit": "kg",
+        "co2e_calculation_method": "ar4",
+        "co2e_calculation_origin": "source",
+        "emission_factor": {
+          "name": "Subway",
+          "activity_id": "passenger_train-route_subway-fuel_source_na",
+          "uuid": "b1575ee1-87c9-4560-a09d-e423627c8548",
+          "id": "passenger_train-route_subway-fuel_source_na",
+          "access_type": "public",
+          "source": "GHG Protocol",
+          "source_dataset": "Quantis and GHG Protocol Scope 3 Evaluator",
+          "year": "2017",
+          "region": "GLOBAL",
+          "category": "Rail Travel",
+          "lca_activity": "unknown",
+          "data_quality_flags": []
+        },
+        "constituent_gases": {
+          "co2e_total": 0.33,
+          "co2e_other": null,
+          "co2": null,
+          "ch4": null,
+          "n2o": null
+        }
+      },
+      "createdAt": "2023-04-06T20:22:22.562Z"
+    },
+    {
+      "id": 32,
+      "date": "2023-01-31T23:00:00.000Z",
+      "transportID": "passenger_vehicle-vehicle_type_taxi-fuel_source_na-distance_na-engine_size_na",
+      "distance_km": "55",
+      "userID": 1,
+      "calculatedEmissions": {
+        "co2e": 15.130500000000001,
+        "co2e_unit": "kg",
+        "co2e_calculation_method": "ar4",
+        "co2e_calculation_origin": "source",
+        "emission_factor": {
+          "name": "Taxi",
+          "activity_id": "passenger_vehicle-vehicle_type_taxi-fuel_source_na-distance_na-engine_size_na",
+          "uuid": "f83eeae7-43a5-4460-9988-c21327ca09af",
+          "id": "passenger_vehicle-vehicle_type_taxi-fuel_source_na-distance_na-engine_size_na",
+          "access_type": "public",
+          "source": "GHG Protocol",
+          "source_dataset": "Quantis and GHG Protocol Scope 3 Evaluator",
+          "year": "2017",
+          "region": "GLOBAL",
+          "category": "Road Travel",
+          "lca_activity": "unknown",
+          "data_quality_flags": []
+        },
+        "constituent_gases": {
+          "co2e_total": 15.130500000000001,
+          "co2e_other": null,
+          "co2": null,
+          "ch4": null,
+          "n2o": null
+        }
+      },
+      "createdAt": "2023-04-06T20:22:45.081Z"
+    },
+    {
+      "id": 33,
+      "date": "2023-01-18T23:00:00.000Z",
+      "transportID": "passenger_vehicle-vehicle_type_van-fuel_source_na-distance_na-engine_size_na",
+      "distance_km": "10",
+      "userID": 1,
+      "calculatedEmissions": {
+        "co2e": 3.218,
+        "co2e_unit": "kg",
+        "co2e_calculation_method": "ar4",
+        "co2e_calculation_origin": "source",
+        "emission_factor": {
+          "name": "Van",
+          "activity_id": "passenger_vehicle-vehicle_type_van-fuel_source_na-distance_na-engine_size_na",
+          "uuid": "121f090f-6b8d-458f-a682-d525a281646e",
+          "id": "passenger_vehicle-vehicle_type_van-fuel_source_na-distance_na-engine_size_na",
+          "access_type": "public",
+          "source": "GHG Protocol",
+          "source_dataset": "Quantis and GHG Protocol Scope 3 Evaluator",
+          "year": "2017",
+          "region": "GLOBAL",
+          "category": "Road Travel",
+          "lca_activity": "unknown",
+          "data_quality_flags": []
+        },
+        "constituent_gases": {
+          "co2e_total": 3.218,
+          "co2e_other": null,
+          "co2": null,
+          "ch4": null,
+          "n2o": null
+        }
+      },
+      "createdAt": "2023-04-06T20:23:07.704Z"
+    },
+    {
+      "id": 34,
+      "date": "2023-03-02T23:00:00.000Z",
+      "transportID": "passenger_vehicle-vehicle_type_bicycle-fuel_source_na-distance_na-engine_size_na",
+      "distance_km": "20",
+      "userID": 1,
+      "calculatedEmissions": {
+        "co2e": 0,
+        "co2e_unit": "kg",
+        "co2e_calculation_method": "ar4",
+        "co2e_calculation_origin": "source",
+        "emission_factor": {
+          "name": "Bicycle",
+          "activity_id": "passenger_vehicle-vehicle_type_bicycle-fuel_source_na-distance_na-engine_size_na",
+          "uuid": "16b957aa-2d79-4db8-ae75-f5cd34141673",
+          "id": "passenger_vehicle-vehicle_type_bicycle-fuel_source_na-distance_na-engine_size_na",
+          "access_type": "public",
+          "source": "GHG Protocol",
+          "source_dataset": "Quantis and GHG Protocol Scope 3 Evaluator",
+          "year": "2017",
+          "region": "GLOBAL",
+          "category": "Road Travel",
+          "lca_activity": "unknown",
+          "data_quality_flags": []
+        },
+        "constituent_gases": {
+          "co2e_total": 0,
+          "co2e_other": null,
+          "co2": null,
+          "ch4": null,
+          "n2o": null
+        }
+      },
+      "createdAt": "2023-04-06T20:23:28.371Z"
+    },
+    {
+      "id": 35,
+      "date": "2023-06-21T22:00:00.000Z",
+      "transportID": "passenger_vehicle-vehicle_type_bus-fuel_source_na-distance_na-engine_size_na",
+      "distance_km": "22",
+      "userID": 1,
+      "calculatedEmissions": {
+        "co2e": 2.7148,
+        "co2e_unit": "kg",
+        "co2e_calculation_method": "ar4",
+        "co2e_calculation_origin": "source",
+        "emission_factor": {
+          "name": "Bus",
+          "activity_id": "passenger_vehicle-vehicle_type_bus-fuel_source_na-distance_na-engine_size_na",
+          "uuid": "945a07f9-d26e-4046-9827-55102eea0528",
+          "id": "passenger_vehicle-vehicle_type_bus-fuel_source_na-distance_na-engine_size_na",
+          "access_type": "public",
+          "source": "GHG Protocol",
+          "source_dataset": "Quantis and GHG Protocol Scope 3 Evaluator",
+          "year": "2017",
+          "region": "GLOBAL",
+          "category": "Road Travel",
+          "lca_activity": "unknown",
+          "data_quality_flags": []
+        },
+        "constituent_gases": {
+          "co2e_total": 2.7148,
+          "co2e_other": null,
+          "co2": null,
+          "ch4": null,
+          "n2o": null
+        }
+      },
+      "createdAt": "2023-04-06T20:23:52.054Z"
     }
   ]
 }

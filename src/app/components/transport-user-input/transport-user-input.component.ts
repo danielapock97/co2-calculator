@@ -11,6 +11,7 @@ import {Estimate} from "../../entities/estimate";
 import {Emissions} from "../../entities/emissions";
 import {UserService} from "../../services/user.service";
 import {ActivatedRoute} from "@angular/router";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-transport-user-input',
@@ -23,7 +24,7 @@ export class TransportUserInputComponent implements OnInit {
   inputForm = this.fb.group(
     {
       id: [0],
-      date: [""],
+      date: [(new Date())],
       transportID: [""],
       distance_km: [""],
     },
@@ -38,7 +39,8 @@ export class TransportUserInputComponent implements OnInit {
     private fb: FormBuilder,
     private transportService: TransportService,
     private transportUserService: TransportUserService,
-    private calculationService: CalculationService
+    private calculationService: CalculationService,
+    private snackBar: MatSnackBar
   ) {
   }
 
@@ -90,5 +92,9 @@ export class TransportUserInputComponent implements OnInit {
         // console.log(res)
       }
     )
+  }
+
+  openSnackBar() {
+    this.snackBar.open("Saved successfully!", '', {duration: 3000})
   }
 }
