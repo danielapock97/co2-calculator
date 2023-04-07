@@ -47,7 +47,7 @@
     <div *ngIf="user?.role == 'Admin'">
       <button mat-button class="menu-button" routerLinkActive="active" routerLink="statistics-all">
         <mat-icon>show_chart</mat-icon>
-        <span>Statistics</span>
+        <span>Company Statistics</span>
       </button>
     </div>
 
@@ -62,7 +62,7 @@
 
   </mat-sidenav>
   <mat-sidenav-content>
-    <div class="content mat-elevation-z8">
+    <div class="content">
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
