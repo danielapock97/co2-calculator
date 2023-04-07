@@ -18,7 +18,7 @@ export class AdminTransportModesChartComponent implements OnInit {
 
   allTransportsOfUser: TransportUser[] | undefined;
   data: UserTransportData[] = []
-  sumAllUsagesOfTransport: number = 0;
+  public static sumAllUsagesOfTransport: number = 0;
 
   public pieChartOptions: ChartConfiguration<"pie">["options"] = {
     responsive: true,
@@ -29,7 +29,8 @@ export class AdminTransportModesChartComponent implements OnInit {
       },
       datalabels: {
         formatter: function(value, context) {
-          return Math.floor(value) + '%'
+          return value + ' km\n' +
+            Math.floor(value / AdminTransportModesChartComponent.sumAllUsagesOfTransport *100 *100)/100 + ' %'
         }
       },
     },
@@ -79,17 +80,17 @@ export class AdminTransportModesChartComponent implements OnInit {
               element.transportID === userTransport.transportID
             );
             if (index !== -1) {
-              this.data.at(index)!.count++;
+              this.data.at(index)!.km += Number(userTransport.distance_km);
             } else {
-              this.data.push({transportID: userTransport.transportID, count: 1})
+              this.data.push({transportID: userTransport.transportID, km: Number(userTransport.distance_km)})
             }
-            this.sumAllUsagesOfTransport++;
+            AdminTransportModesChartComponent.sumAllUsagesOfTransport = (Number(AdminTransportModesChartComponent.sumAllUsagesOfTransport)) + (Number(userTransport.distance_km));
           }
         )
 
         this.data.forEach(
           data => {
-            this.pieChartData.datasets[0].data.push(data.count / this.sumAllUsagesOfTransport * 100)
+            this.pieChartData.datasets[0].data.push(data.km)
             if (DashboardComponent.transportIdMapping.has(data.transportID)) {
               let label = DashboardComponent.transportIdMapping.get(data.transportID) as string
               this.pieChartData.labels!.push(label)

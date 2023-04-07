@@ -2,7 +2,6 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {ChartConfiguration, ChartData} from 'chart.js';
 import {BaseChartDirective} from 'ng2-charts';
 import DataLabelsPlugin from 'chartjs-plugin-datalabels'
-import {User} from "../../../entities/user";
 import {TransportUserService} from "../../../services/transport-user.service";
 import {TransportUser} from "../../../entities/transport-user";
 import {UserTransportData} from "../../../entities/user-transport-data";
@@ -18,7 +17,7 @@ export class TransportModesChartComponent implements OnInit {
 
   allTransportsOfUser: TransportUser[] | undefined;
   data: UserTransportData[] = []
-  sumAllUsagesOfTransport: number = 0;
+  public static sumAllUsagesOfTransport: number = 0;
 
   public pieChartOptions: ChartConfiguration<"pie">["options"] = {
     responsive: true,
@@ -29,7 +28,8 @@ export class TransportModesChartComponent implements OnInit {
       },
       datalabels: {
         formatter: function(value, context) {
-          return Math.floor(value) + '%'
+          return value + ' km\n' +
+          Math.floor(value / TransportModesChartComponent.sumAllUsagesOfTransport *100 *100)/100 + ' %'
         }
       },
     },
@@ -79,17 +79,17 @@ export class TransportModesChartComponent implements OnInit {
               element.transportID === userTransport.transportID
             );
             if (index !== -1) {
-              this.data.at(index)!.count++;
+              this.data.at(index)!.km += Number(userTransport.distance_km);
             } else {
-              this.data.push({transportID: userTransport.transportID, count: 1})
+              this.data.push({transportID: userTransport.transportID, km: Number(userTransport.distance_km)})
             }
-            this.sumAllUsagesOfTransport++;
+            TransportModesChartComponent.sumAllUsagesOfTransport = (Number(TransportModesChartComponent.sumAllUsagesOfTransport)) + (Number(userTransport.distance_km));
           }
         )
 
         this.data.forEach(
           data => {
-            this.pieChartData.datasets[0].data.push(data.count / this.sumAllUsagesOfTransport * 100)
+            this.pieChartData.datasets[0].data.push(data.km)
             if (DashboardComponent.transportIdMapping.has(data.transportID)) {
               let label = DashboardComponent.transportIdMapping.get(data.transportID) as string
               this.pieChartData.labels!.push(label)
