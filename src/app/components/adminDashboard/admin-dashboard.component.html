@@ -5,7 +5,7 @@
     <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard?.cols"
                    [rowspan]="( cardLayout | async )?.miniCard?.rows">
       <app-card title="" tooltip="Sum of all produced emissions">
-        <app-admin-mini-card [title]="'Total emissions'" [value]="Math.floor(EmissionChartComponent.sumAllEmissions*100)/100" ></app-admin-mini-card>
+        <app-admin-mini-card [title]="'Total emissions'" [value]="Math.floor(AdminEmissionChartComponent.sumAllEmissions*100)/100" ></app-admin-mini-card>
       </app-card>
     </mat-grid-tile>
     <!--Charts-->
