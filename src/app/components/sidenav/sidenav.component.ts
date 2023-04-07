@@ -3,7 +3,7 @@ import {BreakpointObserver} from "@angular/cdk/layout";
 import {MatSidenav} from "@angular/material/sidenav";
 import {User} from "../../entities/user";
 import {UserService} from "../../services/user.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-sidenav',
@@ -19,7 +19,8 @@ export class SidenavComponent implements AfterViewInit, OnInit{
   constructor(
     private breakpointObserver: BreakpointObserver,
     private userService: UserService,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {

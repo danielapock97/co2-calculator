@@ -10,7 +10,7 @@
     </mat-grid-tile>
     <!--Charts-->
     <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
-      <app-card title="Emissions per month" tooltip="Shows the emissions per month">
+      <app-card title="Emissions per month" tooltip="Shows the emissions per month. If you wann see emissions per transport type, click them!">
         <app-admin-emission-chart></app-admin-emission-chart>
       </app-card>
     </mat-grid-tile>

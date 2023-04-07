@@ -9,7 +9,7 @@ import {__param} from "tslib";
   styleUrls: ['./info.component.css']
 })
 export class InfoComponent implements OnInit{
-  user!: User;
+  user: User | undefined;
 
   constructor(
     private router: Router,
