@@ -23,3 +23,11 @@
   font-weight: var(--mdc-list-list-item-label-text-weight);
   letter-spacing: var(--mdc-list-list-item-label-text-tracking);
 }
+
+.myButton {
+  justify-content: center;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  text-align: center
+}

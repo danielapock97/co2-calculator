@@ -59,6 +59,14 @@
       <mat-list-item *ngIf="user.role=='Admin'">
         <mat-error>The login is not safe yet, please update it yourself if you want to use this project!</mat-error>
       </mat-list-item>
+
+      <mat-list-item class="myButton">
+        <button
+          mat-stroked-button
+          (click)="toNewDataButton()">
+          New Data
+        </button>
+      </mat-list-item>
     </mat-list>
     </p>
   </mat-card-content>

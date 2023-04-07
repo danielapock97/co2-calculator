@@ -33,8 +33,9 @@ export class AdminEmissionsPerTransportypeChartComponent implements OnInit{
       },
       datalabels: {
         formatter: function(value, context) {
-          return Math.floor(value*100)/100 + ' co2e\n'
-            + Math.floor(value/AdminEmissionsPerTransportypeChartComponent.sumEmissions*100*100)/100 + '%'
+          let label1 = Math.floor(value*100)/100 + ' co2e\n';
+          let label2 = Math.floor(value/AdminEmissionsPerTransportypeChartComponent.sumEmissions*100*100)/100 + '%'
+          return label1 + label2
         },
         anchor: 'end',
         align: 'top',

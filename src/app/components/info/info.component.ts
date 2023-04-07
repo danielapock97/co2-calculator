@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from "../../entities/user";
+import {ActivatedRoute, Router} from "@angular/router";
+import {__param} from "tslib";
 
 @Component({
   selector: 'app-info',
@@ -9,7 +11,17 @@ import {User} from "../../entities/user";
 export class InfoComponent implements OnInit{
   user!: User;
 
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+  }
+
   ngOnInit() {
     this.user = JSON.parse(window.localStorage.getItem('user')!) as User
+  }
+
+  toNewDataButton() {
+    this.router.navigate(["new-calculation"], {relativeTo: this.route.parent})
   }
 }

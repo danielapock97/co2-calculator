@@ -25,7 +25,7 @@
       <span matSuffix>km</span>
     </mat-form-field>
     <br/>
-    <button mat-button type="submit" (click)="openSnackBar()" [disabled]="!inputForm.valid">Save</button>
+    <button mat-button type="submit" (click)="redirectAndSnackbar()" [disabled]="!inputForm.valid">Save</button>
     <button mat-button type="reset">Reset</button>
   </form>
 </div>

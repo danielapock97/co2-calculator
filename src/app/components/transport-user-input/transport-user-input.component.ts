@@ -10,7 +10,7 @@ import {CalculationService} from "../../services/calculation.service";
 import {Estimate} from "../../entities/estimate";
 import {Emissions} from "../../entities/emissions";
 import {UserService} from "../../services/user.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
@@ -40,7 +40,9 @@ export class TransportUserInputComponent implements OnInit {
     private transportService: TransportService,
     private transportUserService: TransportUserService,
     private calculationService: CalculationService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
   }
 
@@ -94,7 +96,8 @@ export class TransportUserInputComponent implements OnInit {
     )
   }
 
-  openSnackBar() {
+  redirectAndSnackbar() {
+    this.router.navigate(["my-statistics"], {relativeTo: this.route.parent})
     this.snackBar.open("Saved successfully!", '', {duration: 3000})
   }
 }
