@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Emissions} from "../entities/emissions";
 import {Estimate} from "../entities/estimate";
 import {Transport} from "../entities/transport";
+import {UserTransport} from "../entities/user-transport";
 
 @Injectable({
   providedIn: 'root'
@@ -46,4 +47,10 @@ export class CalculationService {
 
     return this.httpClient.post<Emissions>(this.URL, body, this.httpOptions)
   }
+
+  get(activity_id: string): Observable<any> {
+    let httpsParams = new HttpParams()
+      .set('activity_id', activity_id)
+
+    return this.httpClient.get<UserTransport[]>(this.URL + "/search", {params: httpsParams})  }
 }

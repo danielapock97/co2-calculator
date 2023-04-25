@@ -54,6 +54,26 @@ module.exports = mongoose => {
             data_quality_flags: {
                 type: [],
                 required: false,
+            },
+            emissionfactor: {
+                type: Number,
+                required: true,
+                validateBeforeSave: true
+            },
+            factor_calculation_method: {
+                type: Number,
+                required: true,
+                validateBeforeSave: true
+            },
+            unit: {
+                type: String,
+                required: true,
+                validateBeforeSave: true
+            },
+            description: {
+                type: String,
+                required: true,
+                validateBeforeSave: true
             }
         },
         { timestamps: true }

@@ -10,5 +10,7 @@ export interface Transport {
   "region": string,
   "category": string,
   "lca_activity": string,
-  "data_quality_flags": []
+  "data_quality_flags": [],
+  "emissionfactor": number,
+  "factor_calculation_method": string
 }
