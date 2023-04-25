@@ -54,7 +54,14 @@ module.exports = mongoose => {
                 }
             },
         },
-        { timestamps: true }
+        { timestamps: true },
+        {
+            query: {
+                byUserId(userID) {
+                    return this.where({userID: new RegExp(userID, 'i')})
+                }
+            }
+        }
     );
 
     schema.method("toJSON", function() {

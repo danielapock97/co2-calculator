@@ -137,6 +137,7 @@ export class EmissionChartComponent implements OnInit{
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
   ngOnInit() {
+    EmissionChartComponent.sumAllEmissions = 0;
     this.transportUserService.getTransportsByUser(DashboardComponent.user.id).subscribe(
       allData => {
         this.allTransportsOfUser = allData

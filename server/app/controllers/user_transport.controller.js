@@ -27,8 +27,8 @@ exports.create = (req, res) => {
 
 // Retrieve all User_transports from the database.
 exports.findAll = (req, res) => {
-    const name = req.query.name;
-    var condition = name ? { title: { $regex: new RegExp(name), $options: "i" } } : {};
+    const userID = req.query.userId;
+    var condition = userID ? { userID: userID} : {};
 
     User_transport.find(condition)
         .then(data => {
