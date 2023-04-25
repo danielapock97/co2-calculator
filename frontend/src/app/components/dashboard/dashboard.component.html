@@ -4,13 +4,13 @@
       <!--Mini Cards-->
       <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard?.cols"
                      [rowspan]="( cardLayout | async )?.miniCard?.rows">
-        <app-card title="" tooltip="Sum of all produced emissions">
-          <app-mini-card [title]="'Total emissions'" [value]="Math.floor(EmissionChartComponent.sumAllEmissions*100)/100" ></app-mini-card>
+        <app-card title="" tooltip="Summe meiner Emissionen in Kilogramm CO2 Äquivalent">
+          <app-mini-card [title]="'Meine Gesamtemissionen'" [value]="Math.floor(EmissionChartComponent.sumAllEmissions*100)/100" ></app-mini-card>
         </app-card>
       </mat-grid-tile>
     <!--Charts-->
     <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
-      <app-card title="Emissions per month" tooltip="Shows the emissions per month. If you wann see emissions per transport type, click them!">
+      <app-card title="Meine Emissionen nach Monat" tooltip="Emissionen aufgeteilt nach Monaten in Kilogramm CO2-Äquivalent. Mit Klick auf den Fahrzeugtyp können die Emissionen pro Fahrzeugtyp pro Monat angezeigt werden.">
         <app-emission-chart></app-emission-chart>
       </app-card>
     </mat-grid-tile>

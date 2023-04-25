@@ -6,6 +6,8 @@ import {DashboardComponent} from "../../dashboard/dashboard.component";
 import {UserTransport} from "../../../entities/user-transport";
 import {EmissionsChartData} from "../../../entities/emissions-chart-data";
 import DataLabelsPlugin from "chartjs-plugin-datalabels";
+import {Transport} from "../../../entities/transport";
+import {TransportService} from "../../../services/transport.service";
 
 @Component({
   selector: 'app-emission-chart',
@@ -17,8 +19,11 @@ export class EmissionChartComponent implements OnInit{
   dataAllEmissions: EmissionsChartData[] = [];
   public static sumAllEmissions: number = 0;
   dataPerTransport: EmissionsChartData[] = []
-  constructor(private transportUserService: UserTransportService) {
-  }
+  transportIdMapping: Transport[] = []
+  constructor(
+    private transportUserService: UserTransportService,
+    private transportService: TransportService
+  ) {}
 
 
   public lineChartData: ChartConfiguration['data'] = {
@@ -36,7 +41,7 @@ export class EmissionChartComponent implements OnInit{
       },
       {
         data: [],
-        label: 'Subway',
+        label: 'U-Bahn',
         backgroundColor: 'rgba(153, 102, 255, 0.2)',
         borderColor: 'rgba(153, 102, 255, 1)',
         pointBackgroundColor: 'rgba(153, 102, 255, 1)',
@@ -47,7 +52,7 @@ export class EmissionChartComponent implements OnInit{
       },
       {
         data: [],
-        label: 'Automobile',
+        label: 'Auto',
         backgroundColor: 'rgba(54, 162, 235, 0.2)',
         borderColor: 'rgba(54, 162, 235, 1)',
         pointBackgroundColor: 'rgba(54, 162, 235, 1)',
@@ -58,7 +63,7 @@ export class EmissionChartComponent implements OnInit{
       },
       {
         data: [],
-        label: 'Bicycle',
+        label: 'Fahrrad',
         backgroundColor: 'rgba(255, 99, 132, 0.2)',
         borderColor: 'rgba(255, 99, 132, 1)',
         pointBackgroundColor: 'rgba(255, 99, 132, 1)',
@@ -91,7 +96,7 @@ export class EmissionChartComponent implements OnInit{
       },
       {
         data: [],
-        label: 'Van',
+        label: 'Lieferwagen',
         backgroundColor: 'rgba(255, 159, 64, 0.2)',
         borderColor: 'rgba(255, 159, 64, 1)',
         pointBackgroundColor: 'rgba(255, 159, 64, 1)',
@@ -138,13 +143,19 @@ export class EmissionChartComponent implements OnInit{
 
   ngOnInit() {
     EmissionChartComponent.sumAllEmissions = 0;
+    this.transportService.get().subscribe(res => {
+        this.transportIdMapping = res;
+      }
+    )
+
     this.transportUserService.getTransportsByUser(DashboardComponent.user.id).subscribe(
       allData => {
         this.allTransportsOfUser = allData
         this.addDataLineAllEmissions()
 
-        DashboardComponent.transportIdMapping.forEach((value: string, key: string) =>
-          {this.addDataLinePerTransport(key)}
+        this.transportIdMapping.forEach((value: Transport, index: number) =>
+          {
+            this.addDataLinePerTransport(value.id, value.name)}
         )
 
         this.chart?.update();
@@ -186,7 +197,7 @@ export class EmissionChartComponent implements OnInit{
     )
   }
 
-  addDataLinePerTransport(transportID: string) {
+  addDataLinePerTransport(transportID: string, label: string) {
     let filteredData = this.allTransportsOfUser.filter(
       (element) => element.transportID === transportID
     )
@@ -210,14 +221,14 @@ export class EmissionChartComponent implements OnInit{
 
     let dataset: any = {
       data: [],
-      label: '',
+      label: label,
     }
     this.dataPerTransport.forEach(
       data => {
         dataset.data.push(data.emissions)
       }
     )
-    let label = DashboardComponent.transportIdMapping.get(transportID)
+
     let datasetIndex = this.lineChartData.datasets.findIndex(
       dataset => dataset.label === label
     )
