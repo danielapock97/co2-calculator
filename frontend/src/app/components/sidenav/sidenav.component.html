@@ -7,7 +7,7 @@
       close
     </mat-icon>
   </button>
-  CO2 Calculator for Mobility
+  CO2 Fußabdrucksrechner für Mitarbeiter*Innen
 </mat-toolbar>
 
 <mat-sidenav-container>
@@ -21,7 +21,7 @@
         close
       </mat-icon>
     </button>
-    CO2 Calculator for Mobility
+    CO2 Fußabdrucksrechner für Mitarbeiter*Innen
   </mat-toolbar>
   <mat-sidenav #sidenav="matSidenav">
 
@@ -31,29 +31,29 @@
 
     <button mat-button class="menu-button" routerLinkActive="active" routerLink="info">
       <mat-icon>home</mat-icon>
-      <span>Overview</span>
+      <span>Übersicht</span>
     </button>
 
     <button mat-button class="menu-button" routerLinkActive="active" routerLink="new-calculation">
       <mat-icon>playlist_add</mat-icon>
-      <span>New Data</span>
+      <span>Neue Eingabe</span>
     </button>
 
     <button mat-button class="menu-button" routerLinkActive="active" routerLink="my-statistics">
       <mat-icon>insert_chart_outlined</mat-icon>
-      <span>My Statistics</span>
+      <span>Meine Statistik</span>
     </button>
 
     <button mat-button class="menu-button" routerLinkActive="active" routerLink="statistics-all">
       <mat-icon>show_chart</mat-icon>
-      <span>Company Statistics</span>
+      <span>Unternehmensstatistik</span>
     </button>
 
     <mat-divider></mat-divider>
 
     <button mat-button class="menu-button" routerLinkActive="active" routerLink="about">
       <mat-icon>info</mat-icon>
-      <span>About</span>
+      <span>Impressum</span>
     </button>
 
     <app-logout [user]="user"></app-logout>
