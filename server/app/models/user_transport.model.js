@@ -4,11 +4,13 @@ module.exports = mongoose => {
             date: Date,
             transportID: {
               type: mongoose.Schema.Types.ObjectId,
-              ref: "Transport"
+              ref: "Transport",
+                required: true
             },
             userID: {
               type: mongoose.Schema.Types.ObjectId,
-              ref: "User"
+              ref: "User",
+                required: true
             },
             calculatedEmissions: {
                 co2e: {
@@ -38,24 +40,16 @@ module.exports = mongoose => {
                         validateBeforeSave: true
                     },
                     co2e_other: {
-                        type: Number,
-                        required: true,
-                        validateBeforeSave: true
+                        type: Number | null,
                     },
                     co2: {
-                        type: Number,
-                        required: true,
-                        validateBeforeSave: true
+                        type: Number | null,
                     },
                     ch4: {
-                        type: Number,
-                        required: true,
-                        validateBeforeSave: true
+                        type: Number | null,
                     },
                     n2o: {
-                        type: Number,
-                        required: true,
-                        validateBeforeSave: true
+                        type: Number | null,
                     }
                 }
             },

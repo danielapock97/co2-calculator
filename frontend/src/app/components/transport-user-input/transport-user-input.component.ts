@@ -3,13 +3,10 @@ import {FormBuilder} from "@angular/forms";
 import {Transport} from "../../entities/transport";
 import {TransportService} from "../../services/transport.service";
 import {User} from "../../entities/user";
-import {TransportUserService} from "../../services/transport-user.service";
-import {TransportUser} from "../../entities/transport-user";
-import {MAT_DATE_LOCALE} from "@angular/material/core";
+import {UserTransportService} from "../../services/user-transport.service";
+import {UserTransport} from "../../entities/user-transport";
 import {CalculationService} from "../../services/calculation.service";
-import {Estimate} from "../../entities/estimate";
 import {Emissions} from "../../entities/emissions";
-import {UserService} from "../../services/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
@@ -38,7 +35,7 @@ export class TransportUserInputComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private transportService: TransportService,
-    private transportUserService: TransportUserService,
+    private transportUserService: UserTransportService,
     private calculationService: CalculationService,
     private snackBar: MatSnackBar,
     private router: Router,
@@ -63,7 +60,7 @@ export class TransportUserInputComponent implements OnInit {
   }
 
   onSave() {
-    let newData = this.inputForm.value as unknown as TransportUser;
+    let newData = this.inputForm.value as unknown as UserTransport;
 
     let transport =
       this.modesOfTransport.find(element => element.id === newData.transportID)
@@ -75,23 +72,35 @@ export class TransportUserInputComponent implements OnInit {
     this.inputForm.reset();
   }
 
-  calculateEmissions(transport: Transport, distance: number, newData: TransportUser): void {
+  calculateEmissions(transport: Transport, distance: number, newData: UserTransport): void {
     this.calculationService.post(transport, distance).subscribe(
       res => {
         this.emissions = res;
 
         newData.userID = this.user.id;
-        newData.calculatedEmissions = res;
-        newData.createdAt = new Date();
+        newData.transportID = transport.id;
+        newData.calculatedEmissions = {
+          co2e: res.co2e,
+          co2e_calculation_method: res.co2e_calculation_method,
+          co2e_calculation_origin: res.co2e_calculation_origin,
+          co2e_unit: res.co2e_unit,
+          constituent_gases: res.constituent_gases
+        };
         this.saveInput(newData);
+      },
+      error => {
+        console.log(error)
       }
     )
   }
 
-  saveInput(userTransport: TransportUser) {
+  saveInput(userTransport: UserTransport) {
     this.transportUserService.post(userTransport).subscribe(
       res => {
-        // console.log(res)
+        this.redirectAndSnackbar()
+      },
+      error => {
+        console.log(error)
       }
     )
   }

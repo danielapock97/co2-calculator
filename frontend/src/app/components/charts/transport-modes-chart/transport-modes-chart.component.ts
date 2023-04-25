@@ -2,8 +2,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {ChartConfiguration, ChartData} from 'chart.js';
 import {BaseChartDirective} from 'ng2-charts';
 import DataLabelsPlugin from 'chartjs-plugin-datalabels'
-import {TransportUserService} from "../../../services/transport-user.service";
-import {TransportUser} from "../../../entities/transport-user";
+import {UserTransportService} from "../../../services/user-transport.service";
+import {UserTransport} from "../../../entities/user-transport";
 import {UserTransportData} from "../../../entities/user-transport-data";
 import {DashboardComponent} from "../../dashboard/dashboard.component";
 
@@ -15,7 +15,7 @@ import {DashboardComponent} from "../../dashboard/dashboard.component";
 export class TransportModesChartComponent implements OnInit {
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
 
-  allTransportsOfUser: TransportUser[] | undefined;
+  allTransportsOfUser: UserTransport[] | undefined;
   data: UserTransportData[] = []
   public static sumAllUsagesOfTransport: number = 0;
 
@@ -65,7 +65,7 @@ export class TransportModesChartComponent implements OnInit {
   public pieChartLegend = true;
 
 
-  constructor(private transportUserService: TransportUserService) {
+  constructor(private transportUserService: UserTransportService) {
   }
 
   ngOnInit() {

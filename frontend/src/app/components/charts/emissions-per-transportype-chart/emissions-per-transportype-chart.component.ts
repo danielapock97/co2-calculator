@@ -2,9 +2,9 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import DataLabelsPlugin from "chartjs-plugin-datalabels";
 import {ChartConfiguration, ChartData, ChartType} from "chart.js";
 import {BaseChartDirective} from "ng2-charts";
-import {TransportUserService} from "../../../services/transport-user.service";
+import {UserTransportService} from "../../../services/user-transport.service";
 import {DashboardComponent} from "../../dashboard/dashboard.component";
-import {TransportUser} from "../../../entities/transport-user";
+import {UserTransport} from "../../../entities/user-transport";
 import {EmissionsPerTransporttypeData} from "../../../entities/emissions-per-transporttype-data";
 
 @Component({
@@ -15,7 +15,7 @@ import {EmissionsPerTransporttypeData} from "../../../entities/emissions-per-tra
 export class EmissionsPerTransportypeChartComponent implements OnInit{
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
 
-  transportsOfUser: TransportUser[] = [];
+  transportsOfUser: UserTransport[] = [];
   data: EmissionsPerTransporttypeData[] = [];
   public static sumEmissions: number = 0;
 
@@ -77,7 +77,7 @@ export class EmissionsPerTransportypeChartComponent implements OnInit{
   public barChartLegend = false;
   public barChartLabels: string[] = []
 
-  constructor(private userTransportService: TransportUserService) {
+  constructor(private userTransportService: UserTransportService) {
   }
   ngOnInit() {
     this.userTransportService.getTransportsByUser(DashboardComponent.user.id).subscribe(

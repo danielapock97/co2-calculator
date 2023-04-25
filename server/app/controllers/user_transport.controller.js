@@ -4,25 +4,12 @@ const User_transport = db.user_transports;
 // Create and Save a new User_transport
 exports.create = (req, res) => {
     // Create a User_transport
-    const user_transport = new User_transport({
-        date: req.body.date,
-        transportID: req.body.transportID,
-        userID: req.body.userID,
-        distance_km: req.body.distance_km,
-        calculatedEmissions: {
-            co2e: req.body.co2e,
-            co2e_unit: req.body.co2e_unit,
-            co2e_calculation_method: req.body.co2e_calculation_method,
-            co2e_calculation_origin: req.body.co2e_calculation_origin,
-            constituent_gases: {
-                co2e_total: req.body.co2e_total,
-                co2e_other: req.body.co2e_other,
-                co2: req.body.co2,
-                ch4: req.body.ch4,
-                n2o: req.body.n2o
-            }
-        },
-    });
+    const user_transport = new User_transport(
+        req.body
+    );
+
+    console.log(req.body)
+    console.log(user_transport)
 
     // Save User_transport in the database
     user_transport

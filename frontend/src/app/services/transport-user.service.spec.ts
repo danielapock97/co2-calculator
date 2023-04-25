@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TransportUserService } from './transport-user.service';
+import { UserTransportService } from './user-transport.service';
 
 describe('TransportUserService', () => {
-  let service: TransportUserService;
+  let service: UserTransportService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(TransportUserService);
+    service = TestBed.inject(UserTransportService);
   });
 
   it('should be created', () => {

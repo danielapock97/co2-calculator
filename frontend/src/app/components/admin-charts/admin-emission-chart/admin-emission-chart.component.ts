@@ -1,9 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ChartConfiguration, ChartData, ChartType} from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
-import {TransportUserService} from "../../../services/transport-user.service";
+import {UserTransportService} from "../../../services/user-transport.service";
 import {DashboardComponent} from "../../dashboard/dashboard.component";
-import {TransportUser} from "../../../entities/transport-user";
+import {UserTransport} from "../../../entities/user-transport";
 import {EmissionsChartData} from "../../../entities/emissions-chart-data";
 import DataLabelsPlugin from "chartjs-plugin-datalabels";
 import {AdminDashboardComponent} from "../../adminDashboard/admin-dashboard.component";
@@ -14,11 +14,11 @@ import {AdminDashboardComponent} from "../../adminDashboard/admin-dashboard.comp
   styleUrls: ['./admin-emission-chart.component.css']
 })
 export class AdminEmissionChartComponent implements OnInit{
-  allTransportsOfUser: TransportUser[] = [];
+  allTransportsOfUser: UserTransport[] = [];
   dataAllEmissions: EmissionsChartData[] = [];
   public static sumAllEmissions: number = 0;
   dataPerTransport: EmissionsChartData[] = []
-  constructor(private transportUserService: TransportUserService) {
+  constructor(private transportUserService: UserTransportService) {
   }
 
 
