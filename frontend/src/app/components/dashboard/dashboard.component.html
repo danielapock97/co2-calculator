@@ -14,6 +14,18 @@
         <app-mini-card [title]="'der Unternehmens-emissionen'" [value]="getEmissionComparison()" ></app-mini-card>
       </app-card>
     </mat-grid-tile>
+    <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard?.cols"
+                   [rowspan]="( cardLayout | async )?.miniCard?.rows">
+      <app-card title="" tooltip="So viele Emissionen hast du heute produziert">
+        <app-mini-card [title]="'Heutige Emissionen'" [value]="getTodaysEmissions()" ></app-mini-card>
+      </app-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard?.cols"
+                   [rowspan]="( cardLayout | async )?.miniCard?.rows">
+      <app-card title="" tooltip="So viel machen deine heutigen Emissionen von den heutigen Unternehmensemissionen aus">
+        <app-mini-card [title]="'der heutigen Unternehmens-emissionen'" [value]="getTodaysPercentOfEnterpriseEmissions()" ></app-mini-card>
+      </app-card>
+    </mat-grid-tile>
     <!--Charts-->
     <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
       <app-card title="Meine Emissionen nach Monat" tooltip="Emissionen aufgeteilt nach Monaten in Kilogramm CO2-Äquivalent. Mit Klick auf den Fahrzeugtyp können die Emissionen pro Fahrzeugtyp pro Monat angezeigt werden.">

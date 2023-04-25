@@ -16,6 +16,8 @@ import {UserTransport} from "../../entities/user-transport";
 export class DashboardComponent implements OnInit{
   public static user: User;
   public static enterpriseEmissions: number = 0;
+  public static emissionsOfTheDay: number = 0;
+  public static enterpriseEmssionsOfToday: number = 0;
   /** Based on the screen size, switch from standard to one column per row */
   cardLayout = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
@@ -52,6 +54,8 @@ export class DashboardComponent implements OnInit{
         })
       }
     )
+    this.calculateEmissionsOfToday();
+    this.calculateEnterpriseEmissionsOfToday();
   }
 
   public static transportIdMapping: Map<string,string> = new Map<string, string>([
@@ -86,5 +90,41 @@ export class DashboardComponent implements OnInit{
     let enterpriseEmissions = DashboardComponent.enterpriseEmissions;
     let percentComparison = Math.floor((userEmissions/enterpriseEmissions*100)*100)/100
     return percentComparison + " %";
+  }
+
+  calculateEmissionsOfToday(): void {
+    this.userTransportService.getTransportsByUser(DashboardComponent.user.id).subscribe(
+      res => {
+        let today = new Date();
+        res.forEach((value, index) => {
+          if ((new Date(value.date)).toDateString() === today.toDateString()) {
+            DashboardComponent.emissionsOfTheDay += value.calculatedEmissions.co2e
+          }
+        })
+      })
+  }
+
+  calculateEnterpriseEmissionsOfToday(): void {
+    // DashboardComponent.emissionsOfTheDay = 0;
+
+    this.userTransportService.get().subscribe(
+      res => {
+        console.log(res)
+        let today = new Date();
+        res.forEach((value, index) => {
+          if ((new Date(value.date)).toDateString() === today.toDateString()) {
+            DashboardComponent.enterpriseEmssionsOfToday = DashboardComponent.enterpriseEmssionsOfToday + value.calculatedEmissions.co2e
+          }
+        })
+      })
+  }
+
+  getTodaysEmissions(): string {
+    return Math.floor(DashboardComponent.emissionsOfTheDay*100)/100 + ' kg co2e';
+  }
+
+  getTodaysPercentOfEnterpriseEmissions(): string {
+    let percentOfEnterpriseEmissionsToday = (DashboardComponent.emissionsOfTheDay / DashboardComponent.enterpriseEmssionsOfToday * 100)
+    return Math.floor(percentOfEnterpriseEmissionsToday * 100)/100 + ' %'
   }
 }
