@@ -3,6 +3,10 @@ import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import {User} from "../../entities/user";
 import {EmissionChartComponent} from "../charts/emission-chart/emission-chart.component";
+import {AdminEmissionChartComponent} from "../admin-charts/admin-emission-chart/admin-emission-chart.component";
+import {UserTransportService} from "../../services/user-transport.service";
+import {Transport} from "../../entities/transport";
+import {UserTransport} from "../../entities/user-transport";
 
 @Component({
   selector: 'app-dashboard',
@@ -11,6 +15,7 @@ import {EmissionChartComponent} from "../charts/emission-chart/emission-chart.co
 })
 export class DashboardComponent implements OnInit{
   public static user: User;
+  public static enterpriseEmissions: number = 0;
   /** Based on the screen size, switch from standard to one column per row */
   cardLayout = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
@@ -32,10 +37,21 @@ export class DashboardComponent implements OnInit{
     })
   );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private userTransportService: UserTransportService
+    ) {}
 
   ngOnInit() {
     DashboardComponent.user = JSON.parse(window.localStorage.getItem('user')!) as User;
+    DashboardComponent.enterpriseEmissions = 0;
+    this.userTransportService.get().subscribe(
+      res => {
+        res.forEach((value: UserTransport, index: number) => {
+          DashboardComponent.enterpriseEmissions += value.calculatedEmissions.co2e
+        })
+      }
+    )
   }
 
   public static transportIdMapping: Map<string,string> = new Map<string, string>([
@@ -63,4 +79,12 @@ export class DashboardComponent implements OnInit{
   ])
   protected readonly EmissionChartComponent = EmissionChartComponent;
   protected readonly Math = Math;
+  protected readonly AdminEmissionChartComponent = AdminEmissionChartComponent;
+
+  getEmissionComparison(): string {
+    let userEmissions = EmissionChartComponent.sumAllEmissions;
+    let enterpriseEmissions = DashboardComponent.enterpriseEmissions;
+    let percentComparison = Math.floor((userEmissions/enterpriseEmissions*100)*100)/100
+    return percentComparison + " %";
+  }
 }
