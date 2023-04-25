@@ -30,7 +30,7 @@ export class EmissionChartComponent implements OnInit{
     datasets: [
       {
         data: [],
-        label: 'Emissions per month (co2e)',
+        label: 'Gesamtemissionen pro Monat (kg co2e)',
         backgroundColor: 'rgba(148,159,177,0.2)',
         borderColor: 'rgba(148,159,177,1)',
         pointBackgroundColor: 'rgba(148,159,177,1)',

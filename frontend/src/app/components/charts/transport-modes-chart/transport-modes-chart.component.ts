@@ -96,7 +96,6 @@ export class TransportModesChartComponent implements OnInit {
               this.data.push({transportID: userTransport.transportID, km: Number(userTransport.distance_km)})
             }
             TransportModesChartComponent.sumAllUsagesOfTransport = (Number(TransportModesChartComponent.sumAllUsagesOfTransport)) + (Number(userTransport.distance_km));
-            console.log(TransportModesChartComponent.sumAllUsagesOfTransport)
           }
         )
 

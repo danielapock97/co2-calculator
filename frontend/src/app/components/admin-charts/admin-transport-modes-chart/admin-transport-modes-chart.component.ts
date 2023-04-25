@@ -7,6 +7,8 @@ import {UserTransportService} from "../../../services/user-transport.service";
 import {UserTransport} from "../../../entities/user-transport";
 import {UserTransportData} from "../../../entities/user-transport-data";
 import {DashboardComponent} from "../../dashboard/dashboard.component";
+import {Transport} from "../../../entities/transport";
+import {TransportService} from "../../../services/transport.service";
 
 @Component({
   selector: 'app-admin-admin-transport-modes-chart',
@@ -19,6 +21,7 @@ export class AdminTransportModesChartComponent implements OnInit {
   allTransportsOfUser: UserTransport[] | undefined;
   data: UserTransportData[] = []
   public static sumAllUsagesOfTransport: number = 0;
+  allTransportTypes: Transport[] = []
 
   public pieChartOptions: ChartConfiguration<"pie">["options"] = {
     responsive: true,
@@ -66,10 +69,19 @@ export class AdminTransportModesChartComponent implements OnInit {
   public pieChartLegend = true;
 
 
-  constructor(private transportUserService: UserTransportService) {
+  constructor(
+    private transportUserService: UserTransportService,
+    private transportService: TransportService
+    ) {
   }
 
   ngOnInit() {
+    this.transportService.get().subscribe(
+      res => {
+        this.allTransportTypes = res
+      }
+    )
+
     this.transportUserService.get().subscribe(
       allData => {
         this.allTransportsOfUser = allData
@@ -91,11 +103,11 @@ export class AdminTransportModesChartComponent implements OnInit {
         this.data.forEach(
           data => {
             this.pieChartData.datasets[0].data.push(data.km)
-            if (DashboardComponent.transportIdMapping.has(data.transportID)) {
-              let label = DashboardComponent.transportIdMapping.get(data.transportID) as string
-              this.pieChartData.labels!.push(label)
-              this.pieChartLabels.push(label)
-            }
+            let label = this.allTransportTypes.find(
+              (element) => element.id === data.transportID
+            )!.name
+            this.pieChartData.labels!.push(label)
+            this.pieChartLabels.push(label)
           }
         )
         this.chart?.update();

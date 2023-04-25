@@ -4,23 +4,23 @@
     <!--Mini Cards-->
     <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard?.cols"
                    [rowspan]="( cardLayout | async )?.miniCard?.rows">
-      <app-card title="" tooltip="Sum of all produced emissions">
-        <app-admin-mini-card [title]="'Total emissions'" [value]="Math.floor(AdminEmissionChartComponent.sumAllEmissions*100)/100" ></app-admin-mini-card>
+      <app-card title="" tooltip="Gesamtemissionen des Unternehmens in Kilogram CO2-Äquivalent">
+        <app-admin-mini-card [title]="'Gesamtemissionen des Unternehmens'" [value]="Math.floor(AdminEmissionChartComponent.sumAllEmissions*100)/100" ></app-admin-mini-card>
       </app-card>
     </mat-grid-tile>
     <!--Charts-->
     <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
-      <app-card title="Emissions per month" tooltip="Shows the emissions per month. If you wann see emissions per transport type, click them!">
+      <app-card title="Unternehmensemissionen pro Monat" tooltip="Emissionen aufgeteilt nach Monaten in Kilogramm CO2-Äquivalent. Mit Klick auf den Fahrzeugtyp können die Emissionen pro Fahrzeugtyp pro Monat angezeigt werden.">
         <app-admin-emission-chart></app-admin-emission-chart>
       </app-card>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
-      <app-card title="Transport types used (km/%)" tooltip="Shows how many km you used the different trasnport types">
+      <app-card title="Genutzte Transportmodi des Unternehmens (km und %)" tooltip="Zeigt an, für wieviele Kilometer die Transportmodi im Unternehmen genutzt wurden">
         <app-admin-admin-transport-modes-chart></app-admin-admin-transport-modes-chart>
       </app-card>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
-      <app-card title="Emissions per Transport" tooltip="Shows all your emissions categorized per transport">
+      <app-card title="Gesamtemissionen nach Transporttyp" tooltip="Zeigt die Gesamtemssionen des Unternehmenens kategorisiert nach Transportty">
         <app-admin-admin-emissions-per-transportype-chart></app-admin-admin-emissions-per-transportype-chart>
       </app-card>
     </mat-grid-tile>

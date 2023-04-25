@@ -7,6 +7,8 @@ import {UserTransport} from "../../../entities/user-transport";
 import {EmissionsChartData} from "../../../entities/emissions-chart-data";
 import DataLabelsPlugin from "chartjs-plugin-datalabels";
 import {AdminDashboardComponent} from "../../adminDashboard/admin-dashboard.component";
+import {Transport} from "../../../entities/transport";
+import {TransportService} from "../../../services/transport.service";
 
 @Component({
   selector: 'app-admin-emission-chart',
@@ -18,7 +20,11 @@ export class AdminEmissionChartComponent implements OnInit{
   dataAllEmissions: EmissionsChartData[] = [];
   public static sumAllEmissions: number = 0;
   dataPerTransport: EmissionsChartData[] = []
-  constructor(private transportUserService: UserTransportService) {
+  transportIdMapping: Transport[] = [];
+  constructor(
+    private transportUserService: UserTransportService,
+    private transportService: TransportService
+  ) {
   }
 
 
@@ -26,7 +32,7 @@ export class AdminEmissionChartComponent implements OnInit{
     datasets: [
       {
         data: [],
-        label: 'Emissions per month (co2e)',
+        label: 'Gesamtemissionen pro Monat (kg co2e)',
         backgroundColor: 'rgba(148,159,177,0.2)',
         borderColor: 'rgba(148,159,177,1)',
         pointBackgroundColor: 'rgba(148,159,177,1)',
@@ -37,7 +43,7 @@ export class AdminEmissionChartComponent implements OnInit{
       },
       {
         data: [],
-        label: 'Subway',
+        label: 'U-Bahn',
         backgroundColor: 'rgba(153, 102, 255, 0.2)',
         borderColor: 'rgba(153, 102, 255, 1)',
         pointBackgroundColor: 'rgba(153, 102, 255, 1)',
@@ -48,7 +54,7 @@ export class AdminEmissionChartComponent implements OnInit{
       },
       {
         data: [],
-        label: 'Automobile',
+        label: 'Auto',
         backgroundColor: 'rgba(54, 162, 235, 0.2)',
         borderColor: 'rgba(54, 162, 235, 1)',
         pointBackgroundColor: 'rgba(54, 162, 235, 1)',
@@ -59,7 +65,7 @@ export class AdminEmissionChartComponent implements OnInit{
       },
       {
         data: [],
-        label: 'Bicycle',
+        label: 'Fahrrad',
         backgroundColor: 'rgba(255, 99, 132, 0.2)',
         borderColor: 'rgba(255, 99, 132, 1)',
         pointBackgroundColor: 'rgba(255, 99, 132, 1)',
@@ -92,7 +98,7 @@ export class AdminEmissionChartComponent implements OnInit{
       },
       {
         data: [],
-        label: 'Van',
+        label: 'Lieferwagen',
         backgroundColor: 'rgba(255, 159, 64, 0.2)',
         borderColor: 'rgba(255, 159, 64, 1)',
         pointBackgroundColor: 'rgba(255, 159, 64, 1)',
@@ -138,13 +144,20 @@ export class AdminEmissionChartComponent implements OnInit{
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
   ngOnInit() {
+    AdminEmissionChartComponent.sumAllEmissions = 0;
+    this.transportService.get().subscribe(res => {
+        this.transportIdMapping = res;
+      }
+    )
+
     this.transportUserService.get().subscribe(
       allData => {
         this.allTransportsOfUser = allData
         this.addDataLineAllEmissions()
 
-        AdminDashboardComponent.transportIdMapping.forEach((value: string, key: string) =>
-          {this.addDataLinePerTransport(key)}
+        this.transportIdMapping.forEach((value: Transport, index: number) =>
+          {
+            this.addDataLinePerTransport(value.id, value.name)}
         )
 
         this.chart?.update();
@@ -158,7 +171,7 @@ export class AdminEmissionChartComponent implements OnInit{
 
     this.allTransportsOfUser.forEach(
 
-    userTransport => {
+      userTransport => {
         let userTransportMonth = ((new Date(userTransport.date)).getMonth()+1)
         let index = this.dataAllEmissions.findIndex(element =>
           element.month === userTransportMonth
@@ -186,7 +199,7 @@ export class AdminEmissionChartComponent implements OnInit{
     )
   }
 
-  addDataLinePerTransport(transportID: string) {
+  addDataLinePerTransport(transportID: string, label: string) {
     let filteredData = this.allTransportsOfUser.filter(
       (element) => element.transportID === transportID
     )
@@ -210,14 +223,14 @@ export class AdminEmissionChartComponent implements OnInit{
 
     let dataset: any = {
       data: [],
-      label: '',
+      label: label,
     }
     this.dataPerTransport.forEach(
       data => {
         dataset.data.push(data.emissions)
       }
     )
-    let label = AdminDashboardComponent.transportIdMapping.get(transportID)
+
     let datasetIndex = this.lineChartData.datasets.findIndex(
       dataset => dataset.label === label
     )
@@ -230,7 +243,7 @@ export class AdminEmissionChartComponent implements OnInit{
 
   setEmptyMonthInDataset(): EmissionsChartData[] {
     let dataset: EmissionsChartData[] = [];
-    AdminDashboardComponent.monthMapping.forEach((value: string, key: number) => {
+    DashboardComponent.monthMapping.forEach((value: string, key: number) => {
       dataset.push({emissions: 0, month: key} as EmissionsChartData)
     })
     return dataset;

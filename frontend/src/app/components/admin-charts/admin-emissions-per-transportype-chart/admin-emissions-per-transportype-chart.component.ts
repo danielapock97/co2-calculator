@@ -6,6 +6,8 @@ import {UserTransportService} from "../../../services/user-transport.service";
 import {DashboardComponent} from "../../dashboard/dashboard.component";
 import {UserTransport} from "../../../entities/user-transport";
 import {EmissionsPerTransporttypeData} from "../../../entities/emissions-per-transporttype-data";
+import {Transport} from "../../../entities/transport";
+import {TransportService} from "../../../services/transport.service";
 
 @Component({
   selector: 'app-admin-admin-emissions-per-transportype-chart',
@@ -18,6 +20,7 @@ export class AdminEmissionsPerTransportypeChartComponent implements OnInit{
   transportsOfUser: UserTransport[] = [];
   data: EmissionsPerTransporttypeData[] = [];
   public static sumEmissions: number = 0;
+  allTransportTypes: Transport[] = []
 
   public barChartOptions: ChartConfiguration<'bar'>['options'] = {
     responsive: true,
@@ -77,10 +80,19 @@ export class AdminEmissionsPerTransportypeChartComponent implements OnInit{
   public barChartLegend = false;
   public barChartLabels: string[] = []
 
-  constructor(private userTransportService: UserTransportService) {
+  constructor(
+    private userTransportService: UserTransportService,
+    private transportService: TransportService
+  ) {
   }
   ngOnInit() {
-    this.userTransportService.get().subscribe(
+    this.transportService.get().subscribe(
+      res => {
+        this.allTransportTypes = res
+      }
+    )
+
+    this.userTransportService.getTransportsByUser(DashboardComponent.user.id).subscribe(
 
       allData => {
         this.transportsOfUser = allData
@@ -99,15 +111,15 @@ export class AdminEmissionsPerTransportypeChartComponent implements OnInit{
           }
         )
 
-
         this.data.forEach(
           data => {
             this.barChartData.datasets[0].data.push(data.emissions)
-            if (DashboardComponent.transportIdMapping.has(data.transportID)) {
-              let label = DashboardComponent.transportIdMapping.get(data.transportID) as string
-              this.barChartData.labels!.push(label)
-              this.barChartLabels.push(label)
-            }
+            let label = this.allTransportTypes.find(
+              (element) => element.id === data.transportID
+            )!.name
+
+            this.barChartData.labels!.push(label)
+            this.barChartLabels.push(label)
           }
         )
         this.chart?.update();

@@ -10,7 +10,6 @@ exports.create = (req, res) => {
         lastLoggedIn: req.body.lastLoggedIn
     });
 
-    console.log(user)
     // Save User in the database
     user
         .save(user)
