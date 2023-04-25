@@ -6,6 +6,8 @@ import {UserTransportService} from "../../../services/user-transport.service";
 import {UserTransport} from "../../../entities/user-transport";
 import {UserTransportData} from "../../../entities/user-transport-data";
 import {DashboardComponent} from "../../dashboard/dashboard.component";
+import {TransportService} from "../../../services/transport.service";
+import {Transport} from "../../../entities/transport";
 
 @Component({
   selector: 'app-transport-modes-chart',
@@ -16,6 +18,7 @@ export class TransportModesChartComponent implements OnInit {
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
 
   allTransportsOfUser: UserTransport[] | undefined;
+  allTransportTypes: Transport[] = []
   data: UserTransportData[] = []
   public static sumAllUsagesOfTransport: number = 0;
 
@@ -29,7 +32,7 @@ export class TransportModesChartComponent implements OnInit {
       datalabels: {
         formatter: function(value, context) {
           return value + ' km\n' +
-          Math.floor(value / TransportModesChartComponent.sumAllUsagesOfTransport *100 *100)/100 + ' %'
+          Math.floor(value / TransportModesChartComponent.sumAllUsagesOfTransport  *100 *100)/100 + ' %'
         }
       },
     },
@@ -65,10 +68,19 @@ export class TransportModesChartComponent implements OnInit {
   public pieChartLegend = true;
 
 
-  constructor(private transportUserService: UserTransportService) {
+  constructor(
+    private transportUserService: UserTransportService,
+    private transportService: TransportService
+  ) {
   }
 
   ngOnInit() {
+    this.transportService.get().subscribe(
+      res => {
+        this.allTransportTypes = res
+      }
+    )
+
     this.transportUserService.getTransportsByUser(DashboardComponent.user.id).subscribe(
       allData => {
         this.allTransportsOfUser = allData
@@ -84,17 +96,18 @@ export class TransportModesChartComponent implements OnInit {
               this.data.push({transportID: userTransport.transportID, km: Number(userTransport.distance_km)})
             }
             TransportModesChartComponent.sumAllUsagesOfTransport = (Number(TransportModesChartComponent.sumAllUsagesOfTransport)) + (Number(userTransport.distance_km));
+            console.log(TransportModesChartComponent.sumAllUsagesOfTransport)
           }
         )
 
         this.data.forEach(
           data => {
             this.pieChartData.datasets[0].data.push(data.km)
-            if (DashboardComponent.transportIdMapping.has(data.transportID)) {
-              let label = DashboardComponent.transportIdMapping.get(data.transportID) as string
-              this.pieChartData.labels!.push(label)
-              this.pieChartLabels.push(label)
-            }
+            let label = this.allTransportTypes.find(
+              (element) => element.id === data.transportID
+            )!.name
+            this.pieChartData.labels!.push(label)
+            this.pieChartLabels.push(label)
           }
         )
         this.chart?.update();

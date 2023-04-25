@@ -12,6 +12,11 @@ module.exports = mongoose => {
               ref: "User",
                 required: true
             },
+            distance_km: {
+              type: Number,
+              required: true,
+              validateBeforeSave: true
+            },
             calculatedEmissions: {
                 co2e: {
                     type: Number,

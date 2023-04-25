@@ -6,6 +6,8 @@ import {UserTransportService} from "../../../services/user-transport.service";
 import {DashboardComponent} from "../../dashboard/dashboard.component";
 import {UserTransport} from "../../../entities/user-transport";
 import {EmissionsPerTransporttypeData} from "../../../entities/emissions-per-transporttype-data";
+import {TransportService} from "../../../services/transport.service";
+import {Transport} from "../../../entities/transport";
 
 @Component({
   selector: 'app-emissions-per-transportype-chart',
@@ -15,6 +17,7 @@ import {EmissionsPerTransporttypeData} from "../../../entities/emissions-per-tra
 export class EmissionsPerTransportypeChartComponent implements OnInit{
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
 
+  allTransportTypes: Transport[] = []
   transportsOfUser: UserTransport[] = [];
   data: EmissionsPerTransporttypeData[] = [];
   public static sumEmissions: number = 0;
@@ -33,7 +36,7 @@ export class EmissionsPerTransportypeChartComponent implements OnInit{
       },
       datalabels: {
         formatter: function(value, context) {
-          let label1 = Math.floor(value*100)/100 + ' co2e\n';
+          let label1 = Math.floor(value*100)/100 + ' kg co2e\n';
           let label2 = Math.floor(value/EmissionsPerTransportypeChartComponent.sumEmissions*100*100)/100 + '%'
           return label1 + label2
         },
@@ -77,9 +80,18 @@ export class EmissionsPerTransportypeChartComponent implements OnInit{
   public barChartLegend = false;
   public barChartLabels: string[] = []
 
-  constructor(private userTransportService: UserTransportService) {
+  constructor(
+    private userTransportService: UserTransportService,
+    private transportService: TransportService
+  ) {
   }
   ngOnInit() {
+    this.transportService.get().subscribe(
+      res => {
+        this.allTransportTypes = res
+      }
+    )
+
     this.userTransportService.getTransportsByUser(DashboardComponent.user.id).subscribe(
 
       allData => {
@@ -103,11 +115,12 @@ export class EmissionsPerTransportypeChartComponent implements OnInit{
         this.data.forEach(
           data => {
             this.barChartData.datasets[0].data.push(data.emissions)
-            if (DashboardComponent.transportIdMapping.has(data.transportID)) {
-              let label = DashboardComponent.transportIdMapping.get(data.transportID) as string
-              this.barChartData.labels!.push(label)
-              this.barChartLabels.push(label)
-            }
+            let label = this.allTransportTypes.find(
+              (element) => element.id === data.transportID
+            )!.name
+
+            this.barChartData.labels!.push(label)
+            this.barChartLabels.push(label)
           }
         )
         this.chart?.update();

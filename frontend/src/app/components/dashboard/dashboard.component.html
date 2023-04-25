@@ -15,13 +15,13 @@
       </app-card>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
-      <app-card title="Transport types used (km/%)" tooltip="Shows how many km you used the different trasnport types">
-<!--        <app-transport-modes-chart></app-transport-modes-chart>-->
+      <app-card title="Genutzte Transportmodi (km und %)" tooltip="Zeigt an, für wieviele Kilometer die Transportmodi genutzt wurden">
+        <app-transport-modes-chart></app-transport-modes-chart>
       </app-card>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
       <app-card title="Emissions per Transport" tooltip="Shows all your emissions categorized per transport">
-<!--        <app-emissions-per-transportype-chart></app-emissions-per-transportype-chart>-->
+        <app-emissions-per-transportype-chart></app-emissions-per-transportype-chart>
       </app-card>
     </mat-grid-tile>
 
