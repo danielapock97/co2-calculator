@@ -5,7 +5,7 @@
   <mat-card-content>
     <p>
     <mat-list class="my-list">
-      <li class="my-list" *ngIf="user?.role=='Admin'">
+      <li class="my-list">
         <p>At the 'New Data' section your employees and you put in their dataof transports. There are a few transports
           possible. Each of them has its own emission factor provided by `https://www.climatiq.io/`.
           The emission factors provided are from notable sources as GHG Protocol or ADEME. In this project only GHG
@@ -49,14 +49,14 @@
         <p>At the 'My statistics' section you see a dashboard with statistics on how high your carbon emissions where
           with the different types of transport.</p>
       </mat-list-item>
-      <mat-list-item *ngIf="user?.role=='Admin'">
+      <mat-list-item >
         <p>At the 'Admin Dashboard' section you see a dashboard with statistics about the carbon emissions
           of all users combined (yours too).</p>
       </mat-list-item>
       <mat-list-item>
         <p>The 'About' section shows some general information about the project aka impressum.</p>
       </mat-list-item>
-      <mat-list-item *ngIf="user?.role=='Admin'">
+      <mat-list-item>
         <mat-error>The login is not safe yet, please update it yourself if you want to use this project!</mat-error>
       </mat-list-item>
 

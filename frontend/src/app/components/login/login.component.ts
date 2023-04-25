@@ -11,13 +11,12 @@ import {UserService} from "../../services/user.service";
 })
 export class LoginComponent implements OnInit {
 
-  currentUserID!: number;
+  currentUserID!: string;
   availableUsers!: User[];
   loginForm = this.fb.group(
     {
-      id: [0],
+      id: [""],
       name: [""],
-      role: [""],
       loggedIn: [false],
       lastLoggedIn: [new Date()]
     },
@@ -45,7 +44,7 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    this.currentUserID = this.loginForm.value.id as unknown as number
+    this.currentUserID = this.loginForm.value.id as unknown as string
     let currentUser = this.availableUsers.find(element => element.id === this.currentUserID)
     currentUser!.loggedIn = true
     this.userService.put(currentUser!)

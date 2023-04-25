@@ -8,12 +8,11 @@ import {User} from "../entities/user";
 })
 export class UserService {
 
-  private apiUrl = 'http://localhost:3000/users'
+  private apiUrl = 'http://127.0.0.1:8080/users'
 
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': 'false'
     }),
   };
   constructor(private httpClient: HttpClient) { }

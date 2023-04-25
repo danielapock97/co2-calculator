@@ -5,7 +5,7 @@ var cryptoJS = require("crypto-js");
 const app = express();
 
 var corsOptions = {
-    origin: "http://localhost:8081"
+    origin: ["http://localhost:8081", "http://localhost:4200"],
 };
 
 app.use(cors(corsOptions));

@@ -44,12 +44,10 @@
       <span>My Statistics</span>
     </button>
 
-    <div *ngIf="user?.role == 'Admin'">
-      <button mat-button class="menu-button" routerLinkActive="active" routerLink="statistics-all">
-        <mat-icon>show_chart</mat-icon>
-        <span>Company Statistics</span>
-      </button>
-    </div>
+    <button mat-button class="menu-button" routerLinkActive="active" routerLink="statistics-all">
+      <mat-icon>show_chart</mat-icon>
+      <span>Company Statistics</span>
+    </button>
 
     <mat-divider></mat-divider>
 
