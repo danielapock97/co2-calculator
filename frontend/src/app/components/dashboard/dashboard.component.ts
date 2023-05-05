@@ -7,6 +7,7 @@ import {AdminEmissionChartComponent} from "../admin-charts/admin-emission-chart/
 import {UserTransportService} from "../../services/user-transport.service";
 import {Transport} from "../../entities/transport";
 import {UserTransport} from "../../entities/user-transport";
+import {TransportModesChartComponent} from "../charts/transport-modes-chart/transport-modes-chart.component";
 
 @Component({
   selector: 'app-dashboard',
@@ -127,4 +128,6 @@ export class DashboardComponent implements OnInit{
     let percentOfEnterpriseEmissionsToday = (DashboardComponent.emissionsOfTheDay / DashboardComponent.enterpriseEmssionsOfToday * 100)
     return Math.floor(percentOfEnterpriseEmissionsToday * 100)/100 + ' %'
   }
+
+    protected readonly TransportModesChartComponent = TransportModesChartComponent;
 }

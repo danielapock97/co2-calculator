@@ -75,6 +75,7 @@ export class TransportModesChartComponent implements OnInit {
   }
 
   ngOnInit() {
+    TransportModesChartComponent.sumAllUsagesOfTransport = 0
     this.transportService.get().subscribe(
       res => {
         this.allTransportTypes = res

@@ -1,47 +1,57 @@
 <!--dash.component.html-->
 <div class="grid-container">
   <mat-grid-list cols="{{ ( cardLayout | async )?.columns }}" rowHeight="300px">
-      <!--Mini Cards-->
-      <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard?.cols"
-                     [rowspan]="( cardLayout | async )?.miniCard?.rows">
-        <app-card title="" tooltip="Summe meiner Emissionen in Kilogramm CO2 Äquivalent">
-          <app-mini-card [title]="'Meine Gesamtemissionen'" [value]="(Math.floor(EmissionChartComponent.sumAllEmissions*100)/100) + ' kg co2e'" ></app-mini-card>
-        </app-card>
-      </mat-grid-tile>
+    <!--Mini Cards-->
+    <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard?.cols"
+                   [rowspan]="( cardLayout | async )?.miniCard?.rows">
+      <app-card title="" tooltip="Summe meiner Emissionen in Kilogramm CO2 Äquivalent">
+        <app-mini-card [title]="'Meine Gesamtemissionen'"
+                       [value]="(Math.floor(EmissionChartComponent.sumAllEmissions*100)/100) + ' kg co2e\n' + (Math.floor(TransportModesChartComponent.sumAllUsagesOfTransport*100)/100) + ' km'"></app-mini-card>
+      </app-card>
+    </mat-grid-tile>
     <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard?.cols"
                    [rowspan]="( cardLayout | async )?.miniCard?.rows">
       <app-card title="" tooltip="So viel machen deine Emissionen von den Gesamtemissionen des Unternehmens aus">
-        <app-mini-card [title]="'der Unternehmens-emissionen'" [value]="getEmissionComparison()" ></app-mini-card>
+        <app-mini-card [title]="'der Unternehmens-emissionen'" [value]="getEmissionComparison()"></app-mini-card>
       </app-card>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard?.cols"
                    [rowspan]="( cardLayout | async )?.miniCard?.rows">
       <app-card title="" tooltip="So viele Emissionen hast du heute produziert">
-        <app-mini-card [title]="'Heutige Emissionen'" [value]="getTodaysEmissions()" ></app-mini-card>
+        <app-mini-card [title]="'Heutige Emissionen'" [value]="getTodaysEmissions()"></app-mini-card>
       </app-card>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard?.cols"
                    [rowspan]="( cardLayout | async )?.miniCard?.rows">
       <app-card title="" tooltip="So viel machen deine heutigen Emissionen von den heutigen Unternehmensemissionen aus">
-        <app-mini-card [title]="'der heutigen Unternehmens-emissionen'" [value]="getTodaysPercentOfEnterpriseEmissions()" ></app-mini-card>
+        <app-mini-card [title]="'der heutigen Unternehmens-emissionen'"
+                       [value]="getTodaysPercentOfEnterpriseEmissions()"></app-mini-card>
       </app-card>
     </mat-grid-tile>
     <!--Charts-->
     <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
-      <app-card title="Meine Emissionen nach Monat" tooltip="Emissionen aufgeteilt nach Monaten in Kilogramm CO2-Äquivalent. Mit Klick auf den Fahrzeugtyp können die Emissionen pro Fahrzeugtyp pro Monat angezeigt werden.">
+      <app-card title="Meine Emissionen nach Monat"
+                tooltip="Emissionen aufgeteilt nach Monaten in Kilogramm CO2-Äquivalent. Mit Klick auf den Fahrzeugtyp können die Emissionen pro Fahrzeugtyp pro Monat angezeigt werden.">
         <app-emission-chart></app-emission-chart>
       </app-card>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
-      <app-card title="Genutzte Transportmodi (km und %)" tooltip="Zeigt an, für wieviele Kilometer die Transportmodi genutzt wurden">
+      <app-card title="Genutzte Transportmodi (km und %)"
+                tooltip="Zeigt an, für wieviele Kilometer die Transportmodi genutzt wurden">
         <app-transport-modes-chart></app-transport-modes-chart>
       </app-card>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
-      <app-card title="Gesamtemissionen nach Transporttyp" tooltip="Zeigt deine Gesamtemssionen kategorisiert nach Transporttyp">
+      <app-card title="Gesamtemissionen nach Transporttyp"
+                tooltip="Zeigt deine Gesamteimssionen kategorisiert nach Transporttyp">
         <app-emissions-per-transportype-chart></app-emissions-per-transportype-chart>
       </app-card>
     </mat-grid-tile>
-
+    <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
+      <app-card title="Emissionsvergleich nach Reisekategorie"
+                tooltip="Zeigt deine Emissionen kategorisiert nach Reisekategorie">
+        <app-emissions-per-trip-category></app-emissions-per-trip-category>
+      </app-card>
+    </mat-grid-tile>
   </mat-grid-list>
 </div>
