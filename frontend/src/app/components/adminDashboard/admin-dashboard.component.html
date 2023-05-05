@@ -5,7 +5,9 @@
     <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard?.cols"
                    [rowspan]="( cardLayout | async )?.miniCard?.rows">
       <app-card title="" tooltip="Gesamtemissionen des Unternehmens in Kilogram CO2-Äquivalent">
-        <app-admin-mini-card [title]="'Gesamtemissionen des Unternehmens'" [value]="Math.floor(AdminEmissionChartComponent.sumAllEmissions*100)/100" ></app-admin-mini-card>
+        <app-admin-mini-card [title]="'Gesamtemissionen des Unternehmens'"
+                             [value]="(Math.floor(AdminEmissionChartComponent.sumAllEmissions*100)/100) + ' kg co2e, ' + '\n' + (Math.floor(AdminTransportModesChartComponent.sumAllUsagesOfTransport*100)/100) + ' km'"
+        ></app-admin-mini-card>
       </app-card>
     </mat-grid-tile>
     <!--Charts-->

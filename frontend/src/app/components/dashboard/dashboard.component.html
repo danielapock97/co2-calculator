@@ -6,7 +6,7 @@
                    [rowspan]="( cardLayout | async )?.miniCard?.rows">
       <app-card title="" tooltip="Summe meiner Emissionen in Kilogramm CO2 Äquivalent">
         <app-mini-card [title]="'Meine Gesamtemissionen'"
-                       [value]="(Math.floor(EmissionChartComponent.sumAllEmissions*100)/100) + ' kg co2e\n' + (Math.floor(TransportModesChartComponent.sumAllUsagesOfTransport*100)/100) + ' km'"></app-mini-card>
+                       [value]="(Math.floor(EmissionChartComponent.sumAllEmissions*100)/100) + ' kg co2e, \n' + (Math.floor(TransportModesChartComponent.sumAllUsagesOfTransport*100)/100) + ' km'"></app-mini-card>
       </app-card>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard?.cols"

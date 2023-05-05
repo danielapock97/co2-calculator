@@ -6,7 +6,7 @@ import {Component, Input} from '@angular/core';
   styleUrls: ['./admin-mini-card.component.css']
 })
 export class AdminMiniCardComponent {
-  @Input() value: number = 0;
+  @Input() value: string = "";
   @Input() title: string = "";
 
 }

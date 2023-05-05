@@ -4,6 +4,9 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import {User} from "../../entities/user";
 import {EmissionChartComponent} from "../charts/emission-chart/emission-chart.component";
 import {AdminEmissionChartComponent} from "../admin-charts/admin-emission-chart/admin-emission-chart.component";
+import {
+  AdminTransportModesChartComponent
+} from "../admin-charts/admin-transport-modes-chart/admin-transport-modes-chart.component";
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -65,4 +68,5 @@ export class AdminDashboardComponent implements OnInit{
   protected readonly EmissionChartComponent = EmissionChartComponent;
   protected readonly Math = Math;
   protected readonly AdminEmissionChartComponent = AdminEmissionChartComponent;
+  protected readonly AdminTransportModesChartComponent = AdminTransportModesChartComponent;
 }
