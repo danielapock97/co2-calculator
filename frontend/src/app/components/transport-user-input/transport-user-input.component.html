@@ -1,6 +1,6 @@
 <div mat-card-content class="card">
   <mat-card-title class="title">New Data</mat-card-title>
-  <form [formGroup]="inputForm" (ngSubmit)="onSave()" class="content">
+  <form [formGroup]="inputForm" class="content">
     <mat-form-field appearance="fill">
       <mat-label>Datum</mat-label>
       <input matInput [matDatepicker]="picker" formControlName="date" required>
@@ -33,7 +33,7 @@
       </mat-select>
     </mat-form-field>
     <br/>
-    <button mat-button type="submit" [disabled]="!inputForm.valid">Save</button>
+    <button mat-button type="submit" [disabled]="!inputForm.valid" (click)="openDialog()">Save</button>
     <button mat-button type="reset">Reset</button>
   </form>
 </div>
