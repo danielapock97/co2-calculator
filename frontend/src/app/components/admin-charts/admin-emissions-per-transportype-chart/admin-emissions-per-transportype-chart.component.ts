@@ -92,7 +92,7 @@ export class AdminEmissionsPerTransportypeChartComponent implements OnInit{
       }
     )
 
-    this.userTransportService.getTransportsByUser(DashboardComponent.user.id).subscribe(
+    this.userTransportService.get().subscribe(
 
       allData => {
         this.transportsOfUser = allData
