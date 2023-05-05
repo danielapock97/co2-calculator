@@ -1,5 +1,5 @@
 <div mat-card-content class="card">
-  <mat-card-title class="title">New Data</mat-card-title>
+  <mat-card-title class="title">Neue Eingabe</mat-card-title>
   <form [formGroup]="inputForm" class="content">
     <mat-form-field appearance="fill">
       <mat-label>Datum</mat-label>
@@ -33,7 +33,7 @@
       </mat-select>
     </mat-form-field>
     <br/>
-    <button mat-button type="submit" [disabled]="!inputForm.valid" (click)="openDialog()">Save</button>
-    <button mat-button type="reset">Reset</button>
+    <button mat-button type="submit" [disabled]="!inputForm.valid" (click)="openDialog()">Speichern</button>
+    <button mat-button type="reset">Daten zurücksetzen</button>
   </form>
 </div>
