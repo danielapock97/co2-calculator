@@ -61,7 +61,7 @@ module.exports = mongoose => {
                 validateBeforeSave: true
             },
             factor_calculation_method: {
-                type: Number,
+                type: String,
                 required: true,
                 validateBeforeSave: true
             },

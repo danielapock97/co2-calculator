@@ -16,10 +16,13 @@ exports.create = (req, res) => {
         region: req.body.region,
         category: req.body.category,
         lca_activity: req.body.lca_activity,
-        data_quality_flags: req.body.data_quality_flags
+        data_quality_flags: req.body.data_quality_flags,
+        emissionfactor: req.body.emissionfactor,
+        factor_calculation_method: req.body.factor_calculation_method,
+        unit: req.body.unit,
+        description: req.body.description
     });
 
-    // Save Transport in the database
     transport
         .save(transport)
         .then(data => {

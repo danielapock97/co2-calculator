@@ -31,6 +31,7 @@ import { AdminTransportModesChartComponent } from "./components/admin-charts/adm
 import { DialogSaveUserInputComponent } from './components/dialog-save-user-input/dialog-save-user-input.component';
 import { EmissionsPerTripCategoryComponent } from './components/charts/emissions-per-trip-category/emissions-per-trip-category.component';
 import { AdminEmissionsPerTripCategoryComponent } from './components/admin-charts/admin-emissions-per-trip-category/admin-emissions-per-trip-category.component';
+import { EmissionfactorTableComponent } from './components/emissionfactor-table/emissionfactor-table.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { AdminEmissionsPerTripCategoryComponent } from './components/admin-chart
     AdminTransportModesChartComponent,
     DialogSaveUserInputComponent,
     EmissionsPerTripCategoryComponent,
-    AdminEmissionsPerTripCategoryComponent
+    AdminEmissionsPerTripCategoryComponent,
+    EmissionfactorTableComponent
   ],
   imports: [
     BrowserModule,

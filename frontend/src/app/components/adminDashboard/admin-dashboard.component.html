@@ -32,5 +32,11 @@
         <app-admin-emissions-per-trip-category></app-admin-emissions-per-trip-category>
       </app-card>
     </mat-grid-tile>
+    <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
+      <app-card title="Emissionsfaktoren"
+                tooltip="Zeigt die Emissionsfkatoren, die zur Berechnung verwendet wurden">
+        <app-emissionfactor-table></app-emissionfactor-table>
+      </app-card>
+    </mat-grid-tile>
   </mat-grid-list>
 </div>
