@@ -17,6 +17,11 @@ module.exports = mongoose => {
               required: true,
               validateBeforeSave: true
             },
+            trip_category: {
+                type: String,
+                required: true,
+                validateBeforeSave: true
+            },
             calculatedEmissions: {
                 co2e: {
                     type: Number,

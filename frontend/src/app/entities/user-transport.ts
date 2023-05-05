@@ -6,4 +6,5 @@ export interface UserTransport {
   date: Date,
   distance_km: number,
   calculatedEmissions: Emissions,
+  trip_category: string
 }

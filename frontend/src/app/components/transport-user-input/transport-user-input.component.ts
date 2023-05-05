@@ -18,12 +18,15 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class TransportUserInputComponent implements OnInit {
   user!: User;
 
+  trip_categories: string[] = ["Arbeitsweg", "Dienstreise"]
+
   inputForm = this.fb.group(
     {
       id: [0],
       date: [(new Date())],
       transportID: [""],
       distance_km: [""],
+      trip_category: [""]
     },
     {
       updateOn: "change"
@@ -69,7 +72,6 @@ export class TransportUserInputComponent implements OnInit {
       this.calculateEmissions(transport, newData.distance_km, newData)
     }
 
-    this.inputForm.reset();
   }
 
   calculateEmissions(transport: Transport, distance: number, newData: UserTransport): void {
@@ -86,6 +88,9 @@ export class TransportUserInputComponent implements OnInit {
           co2e_unit: res.co2e_unit,
           constituent_gases: res.constituent_gases
         };
+        console.log(this.inputForm.value)
+        newData.trip_category = this.inputForm.value.trip_category as string;
+        console.log(newData.trip_category)
         this.saveInput(newData);
       },
       error => {
@@ -97,6 +102,7 @@ export class TransportUserInputComponent implements OnInit {
   saveInput(userTransport: UserTransport) {
     this.transportUserService.post(userTransport).subscribe(
       res => {
+        // this.inputForm.reset();
         this.redirectAndSnackbar()
       },
       error => {

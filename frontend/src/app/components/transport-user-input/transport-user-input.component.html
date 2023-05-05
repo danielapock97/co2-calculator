@@ -25,6 +25,14 @@
       <span matSuffix>km</span>
     </mat-form-field>
     <br/>
+    <mat-form-field>
+      <mat-label>Reisekategorie</mat-label>
+      <mat-select formControlName="trip_category" class="mat-mdc-form-field-input-control" required>
+        <mat-option>--Keine Reisekategorie ausgewählt--</mat-option>
+        <mat-option *ngFor="let trip_category of trip_categories" [value]="trip_category">{{trip_category}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br/>
     <button mat-button type="submit" [disabled]="!inputForm.valid">Save</button>
     <button mat-button type="reset">Reset</button>
   </form>
