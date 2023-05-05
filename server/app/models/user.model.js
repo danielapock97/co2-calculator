@@ -6,6 +6,11 @@ module.exports = mongoose => {
                 required: true,
                 validateBeforeSave: true
             },
+            showSaveDialog: {
+                type: Boolean,
+                required: true,
+                validateBeforeSave: true
+            },
             loggedIn: {
                 type: Boolean,
                 required: true,
@@ -15,7 +20,6 @@ module.exports = mongoose => {
                 type: Date,
                 required: true,
                 validateBeforeSave: true
-
             }
         },
         { timestamps: true }

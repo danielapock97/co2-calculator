@@ -11,6 +11,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatDialog} from "@angular/material/dialog";
 import {DialogSaveUserInputComponent} from "../dialog-save-user-input/dialog-save-user-input.component";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-transport-user-input',
@@ -46,7 +47,8 @@ export class TransportUserInputComponent implements OnInit {
     private snackBar: MatSnackBar,
     private router: Router,
     private route: ActivatedRoute,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private userService: UserService
   ) {
   }
 
@@ -109,25 +111,32 @@ export class TransportUserInputComponent implements OnInit {
   }
 
   openDialog(): void {
-    let newData = this.inputForm.value as unknown as UserTransport;
-    let transport =
-      this.modesOfTransport.find(element => element.id === newData.transportID)
-    this.selectedTransportName = transport!.name
-    console.log(this.selectedTransportName)
+    if (this.user.showSaveDialog) {
+      let newData = this.inputForm.value as unknown as UserTransport;
+      let transport =
+        this.modesOfTransport.find(element => element.id === newData.transportID)
+      this.selectedTransportName = transport!.name
+      console.log(this.selectedTransportName)
 
-    const dialogRef = this.dialog.open(DialogSaveUserInputComponent, {
-      data: {
-        inputData: newData,
-        transportMode: this.selectedTransportName
-      }
-    })
+      const dialogRef = this.dialog.open(DialogSaveUserInputComponent, {
+        data: {
+          inputData: newData,
+          transportMode: this.selectedTransportName
+        }
+      })
 
-    dialogRef.afterClosed().subscribe(res => {
-      if (res) {
-        this.saveConfirmed()
-      }
-    })
+      dialogRef.afterClosed().subscribe(res => {
+        if (res.save) {
+          this.saveConfirmed()
+        }
 
+        if (res.settings) {
+          this.updateSettings(res.settings);
+        }
+      })
+    } else {
+      this.saveConfirmed()
+    }
   }
 
   saveConfirmed(): void {
@@ -139,5 +148,14 @@ export class TransportUserInputComponent implements OnInit {
     if (transport !== undefined) {
       this.calculateEmissions(transport, newData.distance_km, newData)
     }
+  }
+
+  updateSettings(value: boolean) {
+    this.user.showSaveDialog = false
+    this.userService.put(this.user).subscribe(
+      res => {
+        console.log(res)
+      }
+    )
   }
 }

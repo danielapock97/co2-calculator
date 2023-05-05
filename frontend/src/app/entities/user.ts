@@ -3,4 +3,5 @@ export interface User {
   name: string,
   loggedIn: boolean,
   lastLoggedIn: Date
+  showSaveDialog: boolean
 }

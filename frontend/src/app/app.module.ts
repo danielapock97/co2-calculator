@@ -7,7 +7,7 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from "../material.module";
 import {SidenavComponent} from './components/sidenav/sidenav.component';
 import {LoginComponent} from './components/login/login.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {OverviewComponent} from './components/overview/overview.component';
 import {TransportUserInputComponent} from './components/transport-user-input/transport-user-input.component';
@@ -62,6 +62,7 @@ import { DialogSaveUserInputComponent } from './components/dialog-save-user-inpu
     HttpClientModule,
     NgChartsModule,
     LayoutModule,
+    FormsModule,
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'de-AT'},
