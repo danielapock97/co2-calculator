@@ -1,35 +1,29 @@
 <div class="card">
   <mat-card-title class="title">
-    <h1>How to use this tool:</h1>
+    <h1>Anleitung für die Verwendung des Tools:</h1>
   </mat-card-title>
   <mat-card-content>
     <p>
     <mat-list class="my-list">
-      <li class="my-list">
-        <p>At the 'New Data' section your employees and you put in their dataof transports. There are a few transports
-          possible. Each of them has its own emission factor provided by `https://www.climatiq.io/`.
-          The emission factors provided are from notable sources as GHG Protocol or ADEME. In this project only GHG
-          Protocol emission factors are used. Different types of transports available at the moment: </p>
-      </li>
       <li class="my-list mat-list-item">
-        <p>At the 'New Data' section you put in your data of transports. There are a few transports
-          possible. Each of them has its own emission factor provided by
-          <a href="https://www.climatiq.io/">Climatiq.io</a>.
-          The emission factors provided are from notable sources as GHG Protocol or ADEME. In this project only GHG
-          Protocol emission factors are used. Different types of transports available at the moment:
+        <p>Im Bereich "Neue Eingabe" kannst du jederzeit neue Daten zu deinen Arbeits- und Dienstwegen eingeben:
+          Der Arbeitsweg ist der Weg, den du von zu Hause bis zu Arbeit und zurück zurücklegst. Dienstwege sind Wege,
+          die du im Auftrag deines Unternehmens durchführst z.B. eine Dienstreise in eine andere Stadt.
+          Du musst auch dein Transportmittel wählen und die Anzahl der zurückgelegten Distanz in Kilometern angeben. Im
+          Moment stehen nur ein paar Transportmittel für die Berechnung zur Verfügung:
         </p>
         <mat-list>
           <mat-list-item>
             <mat-icon>directions_subway</mat-icon>
-            <span>Subway</span>
+            <span>U-Bahn</span>
           </mat-list-item>
           <mat-list-item>
             <mat-icon>directions_car</mat-icon>
-            <span>Automobile</span>
+            <span>Auto</span>
           </mat-list-item>
           <mat-list-item>
             <mat-icon>directions_bike</mat-icon>
-            Bicylce
+            Fahrrad
           </mat-list-item>
           <mat-list-item>
             <mat-icon>directions_bus</mat-icon>
@@ -41,30 +35,31 @@
           </mat-list-item>
           <mat-list-item >
             <mat-icon>directions_car</mat-icon>
-            Van
+            Lieferwagen
           </mat-list-item>
         </mat-list>
       </li>
+      <li class="my-list">
+        <p>Die Berechnung der CO2-Emissionen
+          erfolgt über eine externe Schnittstelle <a href="https://www.climatiq.io/">Climatiq.io</a>. Diese verwendet
+          zur Berechnung der Emissionen die Emissionsfaktoren des GHG Protocols. Die Emissionsfaktoren werden im Impressum angezeigt.</p>
+      </li>
       <mat-list-item>
-        <p>At the 'My statistics' section you see a dashboard with statistics on how high your carbon emissions where
-          with the different types of transport.</p>
-      </mat-list-item>
-      <mat-list-item >
-        <p>At the 'Admin Dashboard' section you see a dashboard with statistics about the carbon emissions
-          of all users combined (yours too).</p>
-      </mat-list-item>
-      <mat-list-item>
-        <p>The 'About' section shows some general information about the project aka impressum.</p>
+      <p>Der Bereich "Meine Statistik" gibt einen Überblick über deine CO2-Emissionen.</p>
       </mat-list-item>
       <mat-list-item>
-        <mat-error>The login is not safe yet, please update it yourself if you want to use this project!</mat-error>
+        <p>Der Bereich "Unternehmensstatistik" gibt einen Überblick über die Gesamtemissionen des Unternehmens</p>
+        <p></p>
+      </mat-list-item>
+      <mat-list-item>
+        <p>Das Impressumg zeigt einige generelle wichtige Informationen über das Projekt.</p>
       </mat-list-item>
 
       <mat-list-item class="myButton">
         <button
           mat-stroked-button
           (click)="toNewDataButton()">
-          New Data
+          Neue Eingabe
         </button>
       </mat-list-item>
     </mat-list>
