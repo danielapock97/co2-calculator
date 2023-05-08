@@ -9,9 +9,7 @@
   </button>
   CO2 Fußabdrucksrechner für Mitarbeiter*Innen
 </mat-toolbar>
-
 <mat-sidenav-container>
-
   <mat-toolbar class="mat-elevation-z8">
     <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
       <mat-icon *ngIf="!sidenav.opened">
@@ -24,11 +22,8 @@
     CO2 Fußabdrucksrechner für Mitarbeiter*Innen
   </mat-toolbar>
   <mat-sidenav #sidenav="matSidenav">
-
     <h1 class="name">{{user?.name}}</h1>
-
     <mat-divider></mat-divider>
-
     <button mat-button class="menu-button" routerLinkActive="active" routerLink="info">
       <mat-icon>home</mat-icon>
       <span>Übersicht</span>
