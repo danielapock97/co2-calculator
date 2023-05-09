@@ -5,7 +5,6 @@ import {User} from "../../entities/user";
 import {EmissionChartComponent} from "../charts/emission-chart/emission-chart.component";
 import {AdminEmissionChartComponent} from "../admin-charts/admin-emission-chart/admin-emission-chart.component";
 import {UserTransportService} from "../../services/user-transport.service";
-import {Transport} from "../../entities/transport";
 import {UserTransport} from "../../entities/user-transport";
 import {TransportModesChartComponent} from "../charts/transport-modes-chart/transport-modes-chart.component";
 
@@ -126,6 +125,9 @@ export class DashboardComponent implements OnInit{
 
   getTodaysPercentOfEnterpriseEmissions(): string {
     let percentOfEnterpriseEmissionsToday = (DashboardComponent.emissionsOfTheDay / DashboardComponent.enterpriseEmssionsOfToday * 100)
+    if (isNaN(percentOfEnterpriseEmissionsToday)) {
+      percentOfEnterpriseEmissionsToday = 0;
+    }
     return Math.floor(percentOfEnterpriseEmissionsToday * 100)/100 + ' %'
   }
 
