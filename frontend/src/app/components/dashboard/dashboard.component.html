@@ -12,7 +12,7 @@
     <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard?.cols"
                    [rowspan]="( cardLayout | async )?.miniCard?.rows">
       <app-card title="" tooltip="So viel machen deine Emissionen von den Gesamtemissionen des Unternehmens aus">
-        <app-mini-card [title]="'der Unternehmens-emissionen'" [value]="getEmissionComparison()"></app-mini-card>
+        <app-mini-card [title]="'Anteil an den Unternehmens-emissionen'" [value]="getEmissionComparison()"></app-mini-card>
       </app-card>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard?.cols"
